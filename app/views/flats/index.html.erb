@@ -1,9 +1,24 @@
 <div class="container">
   <h1>All Flats</h1>
+  <div class="container">
+    <div class="row">
 
-  <div style="width: 100%; height: 600px;"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      <div class="col-lg">
+        <ul>
+          <% @flats.each do |flat| %>
+            <li class="selected"><%= link_to flat.name, flat_path(flat) %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <%# MAP %>
+      <div class = "col-sm" style="width: 100%; height: 600px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+
+    </div>
   </div>
+
 </div>
