@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>New Flat</h1>
+  <%= simple_form_for @flat do |f| %>
+    <%= f.input :name%>
+    <%= f.input :address %>
+    <%= f.input :summary %>
+    <%= f.input :description %>
+    <%= f.input :cost_per_night %>
+    <%= f.input :bedrooms %>
+    <%= f.input :beds %>
+    <%= f.input :bathrooms %>
+    <%= f.submit %>
+    <%= f.submit 'Save' %>
+  <% end %>
+</div>
+<br>
