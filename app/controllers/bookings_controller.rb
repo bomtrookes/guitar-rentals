@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @Bookings = Booking.all
   end
@@ -21,6 +23,15 @@ class BookingsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def update
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to bookings_path
   end
 
   private

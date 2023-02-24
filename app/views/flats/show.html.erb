@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-3">
   <h1><%= @flat.name %></h1>
   <%= link_to "Home", flats_path %>
   <%= link_to "Edit", edit_flat_path(@flat) %>
@@ -25,5 +25,18 @@
       <% end %>
   </div>
   <hr>
-  <h3>Reviews</h3>
+  <div class="container">
+    <h3>Reviews</h3>
+    <p><%= link_to "Write a review", new_flat_review_path(@flat) %></p>
+    <% if @flat.reviews.empty? %>
+      <p>No reviews yet</p>
+    <% else %>
+      <% @flat.reviews.each do |review| %>
+        <div class="card p-2">
+          <p><%= review.comment %></p>
+          <p><%= review.rating %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
