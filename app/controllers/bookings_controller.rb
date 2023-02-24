@@ -6,13 +6,13 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @flat = Flat.find(params[:flat_id])
-    @booking = @flat.bookings.build(booking_params)
+    @guitar = Guitar.find(params[:guitar_id])
+    @booking = @guitar.bookings.build(booking_params)
     if @booking.save
-      redirect_to @flat, notice: "Booking created successfully."
+      redirect_to @guitar, notice: "Booking created successfully."
     else
       puts @booking.errors.full_messages
-      render "flats/show", notice: "Booking failed."
+      render "guitars/show", notice: "Booking failed."
     end
   end
 
@@ -37,6 +37,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :flat_id)
+    params.require(:booking).permit(:start_date, :end_date, :guitar_id)
   end
 end

@@ -1,14 +1,14 @@
 <div class="container">
-  <h1>All Flats</h1>
-  <p><%= link_to "Add Flat", new_flat_path %></p>
+  <h1>All Guitars</h1>
+  <p><%= link_to "Add Guitar", new_guitar_path %></p>
   <hr>
   <div class="container">
     <div class="row">
 
       <div class="col-lg">
         <ul>
-          <% @flats.each do |flat| %>
-            <li class="selected"><%= link_to flat.name, flat_path(flat) %></li>
+          <% @guitars.each do |guitar| %>
+            <li class="selected"><%= link_to guitar.name, guitar_path(guitar) %></li>
           <% end %>
         </ul>
       </div>
