@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Edit Review</h1>
+  <%= simple_form_for [@guitar, @review] do |f| %>
+    <%= f.input :rating %>
+    <%= f.input :comment %>
+    <%= f.submit 'Save' %>
+</div>

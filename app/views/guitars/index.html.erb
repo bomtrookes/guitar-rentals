@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>All Guitars</h1>
+  <p><%= link_to "Add Guitar", new_guitar_path %></p>
+  <hr>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg">
+        <ul>
+          <% @guitars.each do |guitar| %>
+            <li class="selected"><%= link_to guitar.name, guitar_path(guitar) %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <%# MAP %>
+      <div class = "col-sm" style="width: 100%; height: 600px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+
+    </div>
+  </div>
+
+</div>
