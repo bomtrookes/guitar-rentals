@@ -1,6 +1,6 @@
 class GuitarsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_flat, only: [:show, :edit, :update, :destroy]
+  before_action :set_guitar, only: [:show, :edit, :update, :destroy]
 
   def index
     @guitars = Guitar.all
@@ -25,6 +25,7 @@ class GuitarsController < ApplicationController
 
   def create
     @guitar = Guitar.new(guitar_params)
+    @guitar.user = current_user
     if @guitar.save
       redirect_to @guitar
     else
@@ -55,7 +56,7 @@ class GuitarsController < ApplicationController
   private
 
   def guitar_params
-    params.require(:guitar).permit(:name, :address, :description)
+    params.require(:guitar).permit(:name, :address, :caption, :description, :cost_per_day, :guitar_type, :user_id)
   end
 
   def set_guitar

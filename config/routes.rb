@@ -3,13 +3,13 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :user do
+  resources :users do
     resources :bookings
     resources :reviews
-    resources :flats
+    resources :guitars
   end
 
-  resources :flats do
+  resources :guitars do
     resources :bookings
     resources :reviews
   end

@@ -1,13 +1,13 @@
 <div class="container">
   <h1>New Guitar</h1>
   <%= simple_form_for @guitar do |f| %>
-    <%= f.input :name%>
+    <%= f.input :name %>
     <%= f.input :address %>
-    <%= f.input :summary %>
+    <%= f.input :caption %>
     <%= f.input :description %>
-    <%= f.input :cost_per_night %>
+    <%= f.input :cost_per_day %>
+    <%= f.input :guitar_type %>
     <%= f.submit %>
-    <%= f.submit 'Save' %>
   <% end %>
 </div>
 <br>

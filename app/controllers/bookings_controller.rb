@@ -2,23 +2,24 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @Bookings = Booking.all
+    @bookings = Booking.all
   end
 
   def create
     @guitar = Guitar.find(params[:guitar_id])
     @booking = @guitar.bookings.build(booking_params)
+    @booking.user = current_user
     if @booking.save
       redirect_to @guitar, notice: "Booking created successfully."
     else
       puts @booking.errors.full_messages
-      render "guitars/show", notice: "Booking failed."
+      redirect_to @guitar, notice: "Booking failed."
     end
   end
 
   def edit
     @booking = Booking.find(params[:id])
-    if @booking.update
+    if @booking.update(booking_params)
       redirect_to @booking
     else
       render :edit

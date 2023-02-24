@@ -3,20 +3,14 @@
   <%= link_to "Home", guitars_path %>
   <%= link_to "Edit", edit_guitar_path(@guitar) %>
   <hr>
-  <p>£<%= @guitar.cost_per_night %>0 per night</p>
-  <p><%= @guitar.summary %></p>
+  <p>£<%= @guitar.cost_per_day %>0 per night</p>
+  <p><%= @guitar.caption %></p>
+  <p><%= @guitar.guitar_type %></p>
+
   <hr>
   <p><%= @guitar.description %></p>
   <p><%= @guitar.address %></p>
   <hr>
-  <ul>
-    <li>Bedrooms: <%= @guitar.bedrooms %> </li>
-    <li>Beds: <%= @guitar.beds %> </li>
-    <li>Bathrooms: <%= @guitar.bathrooms %> </li>
-    <li>Guests: <%= @guitar.guests %> </li>
-  </ul>
-  <hr>
-  <div class="container">
     <h3>Bookings</h3>
       <%= simple_form_for [@guitar, @booking] do |f| %>
         <%= f.input :start_date %>
