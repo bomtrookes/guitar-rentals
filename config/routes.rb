@@ -14,4 +14,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  resources :bookings, only: :destroy
+  resources :reviews, only: :destroy
+  resources :guitars, only: :destroy
+
 end

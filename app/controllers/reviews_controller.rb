@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user = current_user
-    @review.guitar = Guitar.find(params[:guitar_id])
+    @guitar = Guitar.find(params[:guitar_id])
     if @review.save
       redirect_to guitar_path(@review.guitar)
     else
@@ -33,9 +33,9 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id])
-    @review.destroy
-    redirect_to guitar_path(@review.guitar)
+    # @review = Review.find(params[:id])
+    # @review.destroy
+    # redirect_to guitar_path(@review.guitar)
   end
 
   private

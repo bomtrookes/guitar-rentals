@@ -2,6 +2,16 @@ class GuitarsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_guitar, only: [:show, :edit, :update, :destroy]
 
+  def destroy
+    @guitar = Guitar.find(params[:id])
+    if @guitar.destroy!
+      puts "trying to destory!"
+      redirect_to guitars_path
+    else
+      redirect_to guitars_path
+    end
+  end
+
   def index
     @guitars = Guitar.all
     # The `geocoded` scope filters only guitars with coordinates
@@ -41,16 +51,12 @@ class GuitarsController < ApplicationController
   end
 
   def update
+    @guitar.user = current_user
     if @guitar.update(guitar_params)
       redirect_to @guitar
     else
       render :edit
     end
-  end
-
-  def destroy
-    @guitar.destroy
-    redirect_to guitars_path
   end
 
   private
