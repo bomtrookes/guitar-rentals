@@ -9,8 +9,8 @@ class Review < ApplicationRecord
   private
 
   def user_can_only_submit_one_review_per_guitar
-    if Review.exists?(user_id: user_id, guitar_id: guitar_id)
-      errors.add(:base, "You can only submit one review per guitar.")
-    end
+    # if Review.exists?(user_id: user_id, guitar_id: guitar_id)
+    #   errors.add(:base, "You can only submit one review per guitar.")
+    # end
   end
 end

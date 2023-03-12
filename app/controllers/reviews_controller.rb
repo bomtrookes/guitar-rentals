@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_user, only: [:show, :edit, :new, :create, :update, :destroy]
 
   def new
     @guitar = Guitar.find(params[:guitar_id])
@@ -46,5 +47,9 @@ class ReviewsController < ApplicationController
 
   def set_review
     @review = Review.find(params[:id])
+  end
+
+  def set_user
+    @user = current_user
   end
 end

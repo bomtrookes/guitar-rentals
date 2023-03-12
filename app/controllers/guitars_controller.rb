@@ -1,6 +1,7 @@
 class GuitarsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_guitar, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:index, :new, :edit]
 
   def destroy
     @guitar = Guitar.find(params[:id])
@@ -13,7 +14,6 @@ class GuitarsController < ApplicationController
   end
 
   def index
-    @user = current_user
     @guitars = Guitar.all
     # The `geocoded` scope filters only guitars with coordinates
     @markers = @guitars.geocoded.map do |guitar|
@@ -76,5 +76,9 @@ class GuitarsController < ApplicationController
 
   def set_guitar
     @guitar = Guitar.find(params[:id])
+  end
+
+  def set_user
+    @user = current_user
   end
 end

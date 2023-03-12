@@ -1,0 +1,20 @@
+<div class="review-modal">
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between">
+      <h3>Reviews</h3>
+      <p data-action="click->modal#closeReview">close</p>
+    </div>
+    <hr>
+    <p><%= link_to "Write a review", new_guitar_review_path(@guitar) %></p>
+    <% if @guitar.reviews.empty? %>
+      <p>No reviews yet</p>
+    <% else %>
+      <% @guitar.reviews.each do |review| %>
+        <div class="card p-2">
+          <p><%= review.comment %></p>
+          <p><%= review.rating %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

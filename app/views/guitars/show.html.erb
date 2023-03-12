@@ -10,10 +10,11 @@
 </div>
 <div class="container">
 
-  <div class="img-box">
-    <div class="img-1"><%= cl_image_tag @guitar.photos[0].key %></div>
-    <div class="img-2"><%= cl_image_tag @guitar.photos[1].key %></div>
-    <div class="img-3"><%= cl_image_tag @guitar.photos[2].key %></div>
+  <div class="img-box" data-controller="modal">
+    <div class="img-1" data-action="click->modal#openGallery"><%= cl_image_tag @guitar.photos[0].key %></div>
+    <div class="img-2" data-action="click->modal#openGallery"><%= cl_image_tag @guitar.photos[1].key %></div>
+    <div class="img-3" data-action="click->modal#openGallery"><%= cl_image_tag @guitar.photos[2].key %></div>
+    <%= render "guitars/gallery_modal" %>
   </div>
 
   <div class="info-box mt-4 mb-3">
@@ -26,11 +27,11 @@
       <!-- <p><%= @guitar.address %></p> -->
     </div>
 
-    <div class="bookings">
+    <div class="bookings" data-controller="modal">
       <div class="d-flex justify-content-between">
         <p><strong>£<%= @guitar.cost_per_day %></strong> day </p>
         <!-- Will activate modal to show reviews -->
-        <p><%= @guitar.reviews.count %> reviews</p>
+        <p id="reviews" data-action="click->modal#openReview"><%= @guitar.reviews.count %> reviews</p>
       </div>
 
         <%= simple_form_for [@guitar, @booking] do |f| %>
@@ -40,6 +41,7 @@
           </div>
           <%= f.submit 'Book' %>
         <% end %>
+    <%= render "guitars/review_modal" %>
     </div>
   </div>
 
@@ -79,19 +81,5 @@
       </div>
     <% end %>
 </div>
-  <div class="container" style="display:none">
-  <hr>
-    <h3>Reviews</h3>
-    <p><%= link_to "Write a review", new_guitar_review_path(@guitar) %></p>
-    <% if @guitar.reviews.empty? %>
-      <p>No reviews yet</p>
-    <% else %>
-      <% @guitar.reviews.each do |review| %>
-        <div class="card p-2">
-          <p><%= review.comment %></p>
-          <p><%= review.rating %></p>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+
 </div>
