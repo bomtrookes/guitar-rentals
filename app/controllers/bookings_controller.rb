@@ -2,7 +2,8 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @bookings = Booking.all
+    @user = current_user
+    @bookings = Booking.where(user: @user)
   end
 
   def create
@@ -39,5 +40,9 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :guitar_id)
+  end
+
+  def number_of_days
+    (booking.end_date - booking.start_date).to_i + 1
   end
 end

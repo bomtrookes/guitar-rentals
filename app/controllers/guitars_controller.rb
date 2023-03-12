@@ -13,6 +13,7 @@ class GuitarsController < ApplicationController
   end
 
   def index
+    @user = current_user
     @guitars = Guitar.all
     # The `geocoded` scope filters only guitars with coordinates
     @markers = @guitars.geocoded.map do |guitar|
@@ -44,7 +45,15 @@ class GuitarsController < ApplicationController
   end
 
   def show
+    @user = @guitar.user
     @booking = @guitar.bookings.build
+    @markers =
+      [
+        lat: @guitar.latitude,
+        lng: @guitar.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {guitar: @guitar}),
+        marker_html: render_to_string(partial: "marker")
+      ]
   end
 
   def edit

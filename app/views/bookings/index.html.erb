@@ -1,2 +1,19 @@
-<h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<div class="container mt-3" style="min-height:70vh">
+
+  <h1>Your Bookings</h1>
+  <hr>
+  <h6>Upcoming Rentals</h6>
+  <hr>
+  <h6>Rental History</h6>
+  <% @bookings.each do |booking| %>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= booking.guitar.name %></h5>
+        <p class="card-text">From <%= booking.start_date %> to <%= booking.end_date %></p>
+        <p class="card-text">£<%= booking.guitar.cost_per_day %> per day</p>
+        <p class="card-text">Total: £<%= booking.total_cost %></p>
+        <%= link_to "View", guitar_path(booking.guitar) %>
+      </div>
+    </div>
+  <% end %>
+</div>

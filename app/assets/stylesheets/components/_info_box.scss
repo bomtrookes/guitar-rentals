@@ -1,0 +1,17 @@
+.info-box {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  grid-template-rows: 1fr;
+  grid-template-areas: "info booking";
+  .guitar-info {
+    grid-area: info;
+    padding: 8px;
+  }
+  .booking {
+    grid-area: booking;
+  }
+  #description {
+    text-align: justify;
+    padding-right: 28px;
+  }
+}

@@ -1,5 +1,30 @@
-<div id="landing" class="mt-5">
+<div id="landing" class="mt-5 mb-3">
   <h1>JOIN OUR GUITAR COMMUNITY</h1>
-  <h2>Hundreds of beautiful guitars to play today</h2>
   <%# <%= link_to "All Guitars", guitars_path %>
+</div>
+
+<div class="container">
+  <h5>Recently Added Guitars</h5>
+  <br>
+  <div class="row">
+    <% @guitars.limit(3).each do |guitar| %>
+      <%= link_to guitar_path(guitar), class: "card-col-4 col-lg-4 col-sm-4 mb-4" do %>
+        <div class="g-card selected">
+          <div class="g-card-image">
+            <% if guitar.photos.attached? %>
+              <%= cl_image_tag guitar.photos.first.key %>
+            <% else %>
+              <p>no img available</p>
+            <% end %>
+          </div>
+          <div class="g-txtbox">
+            <h4 class="g-card-name"><%= guitar.name %></h4>
+            <p class="g-card-rating">⭐️ 5.0</p>
+            <p class="g-card-type"><%= guitar.guitar_type %></p>
+            <p class="g-card-price">£<%= guitar.cost_per_day %>0 per night</p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+</div>
 </div>

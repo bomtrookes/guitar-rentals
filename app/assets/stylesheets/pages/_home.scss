@@ -14,8 +14,9 @@
   border-bottom: 5px solid black;
   h1 {
     font-size: 3.5rem;
-  }
-  h2 {
-    font-size: 2rem;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.08);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    text-align: center;
   }
 }

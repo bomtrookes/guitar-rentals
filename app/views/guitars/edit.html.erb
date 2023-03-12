@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-3">
   <h1>Edit Guitar</h1>
    <%= simple_form_for @guitar do |f| %>
     <%= f.input :name %>
@@ -7,7 +7,9 @@
     <%= f.input :description %>
     <%= f.input :cost_per_day %>
     <%= f.input :guitar_type %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <% if @guitar.photos.empty? %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <% end %>
     <%= f.submit %>
   <% end %>
 </div>
