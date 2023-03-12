@@ -1,10 +1,13 @@
-<div class="container mb-3">
-  <h1><%= @guitar.name %></h1>
+<div class="container mt-4 mb-3">
   <%= link_to "Home", guitars_path %>
   <%= link_to "Edit", edit_guitar_path(@guitar) %>
-
   <hr>
+  <h1><%= @guitar.name %></h1>
   <p>£<%= @guitar.cost_per_day %>0 per night</p>
+  <% @guitar.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
+  <% end %>
+  <br>
   <p><%= @guitar.caption %></p>
   <p><%= @guitar.guitar_type %></p>
 

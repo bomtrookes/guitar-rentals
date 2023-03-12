@@ -1,26 +1,38 @@
-<div class="container">
-  <h1>All Guitars</h1>
-  <p><%= link_to "Add Guitar", new_guitar_path %></p>
-  <hr>
-  <div class="container">
-    <div class="row">
+<div class="container mt-4">
+  <div class="row">
 
-      <div class="col-lg">
-        <ul>
-          <% @guitars.each do |guitar| %>
-            <li class="selected"><%= link_to guitar.name, guitar_path(guitar) %></li>
-          <% end %>
-        </ul>
-      </div>
-
-      <%# MAP %>
-      <div class = "col-sm" style="width: 100%; height: 600px;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-
+    <div class="d-flex justify-content-between">
+      <h1>GUITARS</h1>
+      <p><%= link_to "Add Guitar", new_guitar_path %></p>
     </div>
-  </div>
 
+    <% @guitars.each do |guitar| %>
+      <%= link_to guitar_path(guitar), class: "card-col col-lg-4 col-md-6 mb-4" do %>
+
+        <div class="g-card selected">
+          <div class="g-card-image">
+            <% if guitar.photos.attached? %>
+              <%= cl_image_tag guitar.photos.first.key %>
+            <% else %>
+              <p>no img available</p>
+            <% end %>
+          </div>
+          <div class="g-txtbox">
+            <h4 class="g-card-name"><%= guitar.name %></h4>
+            <p class="g-card-rating">⭐️ 5.0</p>
+            <p class="g-card-type"><%= guitar.guitar_type %></p>
+            <p class="g-card-price">£<%= guitar.cost_per_day %>0 per night</p>
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+
+  </div>
 </div>
+<%# MAP %>
+<!-- div style="display:none" class = "col-sm" style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div> -->
