@@ -10,7 +10,7 @@
       <p>No reviews yet</p>
     <% else %>
       <% @guitar.reviews.each do |review| %>
-        <div class="card p-2">
+        <div class="card p-2" style="color:black">
           <p><%= review.comment %></p>
           <p><%= review.rating %></p>
         </div>

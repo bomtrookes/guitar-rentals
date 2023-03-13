@@ -1,0 +1,8 @@
+<div class="container mt-3" style="min-height: 60vh">
+  <h1>My Guitars</h1>
+  <% @guitars.each do |guitar| %>
+    <div class="card container mt-3 mb-1">
+      <h6><%= link_to guitar.name, guitar_path(guitar) %></h6>
+    </div>
+  <% end %>
+</div>

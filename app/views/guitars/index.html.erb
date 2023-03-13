@@ -3,7 +3,9 @@
 
     <div class="d-flex justify-content-between">
       <h1>GUITARS</h1>
-      <p><%= link_to "Add Guitar", new_guitar_path %></p>
+      <% if user_signed_in? %>
+        <p><%= link_to "Add Guitar", new_guitar_path %></p>
+      <% end %>
     </div>
 
     <% @guitars.each do |guitar| %>

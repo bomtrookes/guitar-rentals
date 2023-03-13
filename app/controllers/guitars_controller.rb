@@ -1,7 +1,7 @@
 class GuitarsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_guitar, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:index, :new, :edit]
+  before_action :set_user, only: [:index, :new, :edit, :owned]
 
   def destroy
     @guitar = Guitar.find(params[:id])
@@ -66,6 +66,10 @@ class GuitarsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def owned
+    @guitars = current_user.guitars
   end
 
   private

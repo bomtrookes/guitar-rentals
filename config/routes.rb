@@ -12,7 +12,12 @@ Rails.application.routes.draw do
   resources :guitars do
     resources :bookings
     resources :reviews
+    collection do
+      get 'owned'
+    end
   end
+
+
 
   resources :bookings, only: :destroy
   resources :reviews, only: :destroy

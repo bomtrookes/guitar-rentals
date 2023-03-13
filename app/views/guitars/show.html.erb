@@ -2,9 +2,11 @@
   <h1><%= @guitar.name %></h1>
 
   <div class="d-flex justify-content-center align-items-center">
-    <%= link_to "Edit", edit_guitar_path(@guitar) %>
-    <%= simple_form_for(@guitar, authenticity_token: true, method: :delete) do |f| %>
-      <%= f.button :submit, "Delete" %>
+    <% if user_signed_in? %>
+      <%= link_to "Edit", edit_guitar_path(@guitar) %>
+      <%= simple_form_for(@guitar, authenticity_token: true, method: :delete) do |f| %>
+        <%= f.button :submit, "Delete" %>
+      <% end %>
     <% end %>
   </div>
 </div>

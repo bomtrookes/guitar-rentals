@@ -8,11 +8,11 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.user = current_user
     @guitar = Guitar.find(params[:guitar_id])
+    @review = @guitar.reviews.new(review_params)
+    @review.user = current_user
     if @review.save
-      redirect_to guitar_path(@review.guitar)
+      redirect_to @guitar, notice: 'Review was successfully created.'
     else
       render :new
     end
