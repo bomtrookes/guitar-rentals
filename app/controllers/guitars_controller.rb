@@ -14,17 +14,19 @@ class GuitarsController < ApplicationController
   end
 
   def index
-    @guitars = Guitar.all
-    # The `geocoded` scope filters only guitars with coordinates
-    @markers = @guitars.geocoded.map do |guitar|
-      {
-        lat: guitar.latitude,
-        lng: guitar.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {guitar: guitar}),
-        marker_html: render_to_string(partial: "marker")
-        # Pass the guitar to the partial for additional info
-        # marker_html: render_to_string(partial: "marker", locals: {guitar: guitar})
-      }
+    if params[:query].present?
+      @guitars = Puzzle.search_all_guitars(params[:query])
+    else
+      @puzzles = Puzzle.all
+      @guitars = Guitar.all
+      @markers = @guitars.geocoded.map do |guitar|
+        {
+          lat: guitar.latitude,
+          lng: guitar.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: {guitar: guitar}),
+          marker_html: render_to_string(partial: "marker")
+        }
+      end
     end
   end
 

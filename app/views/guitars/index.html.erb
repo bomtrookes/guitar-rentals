@@ -8,6 +8,16 @@
       <% end %>
     </div>
 
+    <%= form_with url: guitars_path, method: :get, class: "d-flex mb-3" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Search..."
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+
+
     <% @guitars.each do |guitar| %>
       <%= link_to guitar_path(guitar), class: "card-col col-lg-4 col-md-6 mb-4" do %>
 

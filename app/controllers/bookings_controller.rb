@@ -3,7 +3,8 @@ class BookingsController < ApplicationController
 
   def index
     @user = current_user
-    @bookings = Booking.where(user: @user)
+    @history = @user.bookings.where("end_date < ?", Date.today)
+    @upcoming = @user.bookings.where("end_date > ?", Date.today)
   end
 
   def create
