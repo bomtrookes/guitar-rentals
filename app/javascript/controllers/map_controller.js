@@ -14,7 +14,6 @@ export default class extends Controller {
       container: this.element,
       style: "mapbox://styles/mapbox/dark-v11",
       zoom: 12,
-      minZoom: 10,
       maxZoom: 15
     })
     this.#addMarkersToMap()

@@ -1,0 +1,8 @@
+<div class="container">
+  <%= user.first_name %>
+  <ul>
+  <% user.guitars.each do |guitar| %>
+    <li><%= link_to guitar.name, guitar_path(guitar) %></li>
+  <% end %>
+  </ul>
+</div>
