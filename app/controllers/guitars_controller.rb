@@ -14,24 +14,25 @@ class GuitarsController < ApplicationController
   end
 
   def index
+    @users = User.all
     if params[:query].present?
       @guitars = Guitar.search_all_guitars(params[:query])
-      @markers = @guitars.geocoded.map do |guitar|
+      @markers = @users.geocoded.map do |user|
         {
-          lat: guitar.latitude,
-          lng: guitar.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: {guitar: guitar}),
+          lat: user.latitude,
+          lng: user.longitude,
+          info_window_html: render_to_string(partial: "infos_window", locals: {user: user}),
           marker_html: render_to_string(partial: "marker")
         }
       end
     else
       @guitars = Guitar.all
       # DRY - refactor this code
-      @markers = @guitars.geocoded.map do |guitar|
+      @markers = @users.geocoded.map do |user|
         {
-          lat: guitar.latitude,
-          lng: guitar.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: {guitar: guitar}),
+          lat: user.latitude,
+          lng: user.longitude,
+          info_window_html: render_to_string(partial: "infos_window", locals: {user: user}),
           marker_html: render_to_string(partial: "marker")
         }
       end
@@ -59,8 +60,8 @@ class GuitarsController < ApplicationController
     @booking = @guitar.bookings.build
     @markers =
       [
-        lat: @guitar.latitude,
-        lng: @guitar.longitude,
+        lat: @user.latitude,
+        lng: @user.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: {guitar: @guitar}),
         marker_html: render_to_string(partial: "marker")
       ]
