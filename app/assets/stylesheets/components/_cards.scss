@@ -12,6 +12,9 @@
   border: 5px solid black;
   color: black;
   overflow: hidden;
+  a {
+    text-decoration: none;
+  }
   &:hover img {
     height: 260px;
   }

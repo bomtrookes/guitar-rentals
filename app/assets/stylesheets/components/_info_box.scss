@@ -6,12 +6,23 @@
   .guitar-info {
     grid-area: info;
     padding: 8px;
+    margin-right: 28px;
   }
   .booking {
     grid-area: booking;
   }
   #description {
     text-align: justify;
-    padding-right: 28px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .info-box {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "info" "booking";
+    .guitar-info {
+      margin-right: 0;
+    }
   }
 }

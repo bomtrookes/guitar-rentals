@@ -4,19 +4,19 @@
     <div class="d-flex justify-content-between">
       <h1>GUITARS</h1>
       <% if user_signed_in? %>
-        <p><%= link_to "Add Guitar", new_guitar_path %></p>
+        <p><%= link_to "Add Guitar", new_guitar_path, class: "btn btn-secondary" %></p>
       <% end %>
     </div>
 
     <%= form_with url: guitars_path, method: :get, class: "d-flex mb-3" do %>
       <%= text_field_tag :query,
         params[:query],
+        id: "search",
         class: "form-control",
         placeholder: "Search..."
       %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
+      <%= submit_tag "Search", class: "btn btn-dark" %>
     <% end %>
-
 
     <% @guitars.each do |guitar| %>
       <%= link_to guitar_path(guitar), class: "card-col col-lg-4 col-md-6 mb-4" do %>
@@ -31,7 +31,7 @@
           </div>
           <div class="g-txtbox">
             <h4 class="g-card-name"><%= guitar.name %></h4>
-            <p class="g-card-rating">⭐️ 5.0</p>
+            <p class="g-card-rating"><%= guitar.average_rating %></p>
             <p class="g-card-type"><%= guitar.guitar_type %></p>
             <p class="g-card-price">£<%= guitar.cost_per_day %>0 per night</p>
           </div>

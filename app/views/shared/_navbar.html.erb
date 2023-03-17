@@ -13,7 +13,7 @@
         <% if user_signed_in? %>
 
           <li class="nav-item active">
-            <h6><%= link_to "Guitars", guitars_path, class: "nav-link" %></h6>
+            <h6><%#= link_to "Guitars", guitars_path, class: "nav-link" %></h6>
           </li>
 
           <li class="nav-item dropdown">
@@ -22,6 +22,7 @@
               <%= link_to "Bookings", user_bookings_path(@user), class: "dropdown-item" %>
               <%= link_to "My Guitars", "#", class: "dropdown-item" %>
               <%= link_to "Messages", "#", class: "dropdown-item" %>
+              <hr>
               <%= link_to "Account", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>

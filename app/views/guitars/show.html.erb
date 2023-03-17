@@ -3,15 +3,14 @@
 
   <div class="d-flex justify-content-center align-items-center">
     <% if user_signed_in? %>
-      <%= link_to "Edit", edit_guitar_path(@guitar) %>
+      <%= link_to "Edit", edit_guitar_path(@guitar), class: "btn btn-dark" %>
       <%= simple_form_for(@guitar, authenticity_token: true, method: :delete) do |f| %>
-        <%= f.button :submit, "Delete" %>
+        <%= f.button :submit, "Delete", class: "btn btn-danger" %>
       <% end %>
     <% end %>
   </div>
 </div>
 <div class="container">
-
   <div class="img-box" data-controller="modal">
     <div class="img-1" data-action="click->modal#openGallery"><%= cl_image_tag @guitar.photos[0].key %></div>
     <div class="img-2" data-action="click->modal#openGallery"><%= cl_image_tag @guitar.photos[1].key %></div>
@@ -24,25 +23,31 @@
       <!-- <p><%= @guitar.caption %></p> -->
       <h4>Renting from <%= @guitar.user.first_name %></h4>
       <p><%= @guitar.guitar_type %></p>
-      <hr style="margin-right:28px">
+      <hr>
       <p id="description"><%= @guitar.description %></p>
       <!-- <p><%= @guitar.address %></p> -->
     </div>
 
-    <div class="bookings" data-controller="modal">
+    <div class="bookings" data-controller="modal booking">
       <div class="d-flex justify-content-between">
-        <p><strong>£<%= @guitar.cost_per_day %></strong> day </p>
-        <!-- Will activate modal to show reviews -->
-        <p id="reviews" data-action="click->modal#openReview"><%= @guitar.reviews.count %> reviews</p>
+        <p id="cost"><strong>£<%= @guitar.cost_per_day %></strong> day </p>
+        <div class="d-flex">
+          <p><%= @guitar.average_rating %></p>
+          <!-- Will activate modal to show reviews -->
+          <p id="reviews" data-action="click->modal#openReview"><%= @guitar.reviews.count %> reviews</p>
+        </div>
       </div>
 
         <%= simple_form_for [@guitar, @booking] do |f| %>
           <div>
-            <%= f.input :start_date, html5: true, input_html: {class: "datepicker"}  %>
-            <%= f.input :end_date, html5: true, input_html: {class: "datepicker"}  %>
+            <%= f.input :start_date, html5: true, input_html: {class: "datepicker"}, value: Date.today.to_s, data: { target: "form", action: "change->modal#bookingUpdate" }   %>
+            <%= f.input :end_date, html5: true, input_html: {class: "datepicker"}, value: (Date.today + 1).to_s, data: { target: "form", action: "change->modal#bookingUpdate" }  %>
           </div>
           <%= f.submit 'Book' %>
         <% end %>
+        <div class="container mt-3" data-controller="booking">
+          <p id="total-cost">Total: £<%= @guitar.cost_per_day %></p>
+        </div>
     <%= render "guitars/review_modal" %>
     </div>
   </div>
@@ -51,8 +56,8 @@
 
 <div class="container">
   <hr>
-  <h5> This is where the guitar is...</h5>
-  <%= @guitar.address %>
+  <h5> Pickup location <em>(pun intended)</em>...</h5>
+  <%#= @guitar.address %>
 </div>
 <br>
 <div class = "container col-sm mb-3" style="width: 100%; height: 480px; margin: 0 auto; border: 1px solid lightgrey"
@@ -68,6 +73,7 @@
   <br>
   <div class="row">
     <% @user.guitars.limit(3).each do |guitar| %>
+
       <div class="col-sm-4">
         <div class="card">
           <%= link_to guitar_path(guitar) do %>
@@ -81,6 +87,7 @@
           </div>
         </div>
       </div>
+
     <% end %>
 </div>
 

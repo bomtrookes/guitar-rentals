@@ -15,10 +15,18 @@ class GuitarsController < ApplicationController
 
   def index
     if params[:query].present?
-      @guitars = Puzzle.search_all_guitars(params[:query])
+      @guitars = Guitar.search_all_guitars(params[:query])
+      @markers = @guitars.geocoded.map do |guitar|
+        {
+          lat: guitar.latitude,
+          lng: guitar.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: {guitar: guitar}),
+          marker_html: render_to_string(partial: "marker")
+        }
+      end
     else
-      @puzzles = Puzzle.all
       @guitars = Guitar.all
+      # DRY - refactor this code
       @markers = @guitars.geocoded.map do |guitar|
         {
           lat: guitar.latitude,

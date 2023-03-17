@@ -3,7 +3,7 @@
   <h2><%= link_to "Browse Guitars", guitars_path %></h2>
 </div>
 
-<div class="container">
+<div class="recent">
   <h5>Recently Added Guitars</h5>
   <br>
   <div class="row">
@@ -18,10 +18,11 @@
             <% end %>
           </div>
           <div class="g-txtbox">
-            <h4 class="g-card-name"><%= guitar.name %></h4>
-            <p class="g-card-rating">⭐️ 5.0</p>
-            <p class="g-card-type"><%= guitar.guitar_type %></p>
-            <p class="g-card-price">£<%= guitar.cost_per_day %>0 per night</p>
+            <h6 class="g-card-name"><%= guitar.name %></h6>
+            <p class="g-card-rating"><%= guitar.average_rating %></p>
+            <%# <p class="g-card-type">= guitar.guitar_type</p> %>
+            <%# <p class="g-card-type">= guitar.user.name</p> %>
+            <p class="g-card-type">£<%= guitar.cost_per_day %> day</p>
           </div>
         </div>
       <% end %>

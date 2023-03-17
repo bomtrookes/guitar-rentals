@@ -9,8 +9,16 @@ class Guitar < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_all_guitars,
-    against: [ :name, :caption, :description ],
+    against: [ :name, :caption, :description, :guitar_type, :address ],
     using: {
       tsearch: { prefix: true }
   }
+
+  def average_rating
+    if reviews.length == 0
+      "-"
+    else
+      "⭐️#{reviews.average(:rating).to_f.round(1)}"
+    end
+  end
 end

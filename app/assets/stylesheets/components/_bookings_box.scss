@@ -5,8 +5,10 @@
   border: 1px solid rgb(191, 191, 191);
   #reviews {
     text-decoration: underline;
+    padding-left: 12px;
     &:hover {
       cursor: pointer;
     }
   }
 }
+// movie list - Top 100 Movies to watch before you die
