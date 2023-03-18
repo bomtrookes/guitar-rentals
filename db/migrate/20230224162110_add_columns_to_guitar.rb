@@ -5,6 +5,5 @@ class AddColumnsToGuitar < ActiveRecord::Migration[7.0]
     add_column :guitars, :description, :text
     add_column :guitars, :type, :string
     add_column :guitars, :cost_per_day, :integer
-    add_column :guitars, :address, :string
   end
 end
