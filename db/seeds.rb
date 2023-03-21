@@ -347,7 +347,8 @@ puts "Creating reviews..."
 # Users can only review a guitar once
 50.times do
   Review.create!(guitar_id: Guitar.all.sample.id,
-    user_id: User.where.not(id: Review.pluck(:user_id)).sample&.id,
+    # user_id: User.where.not(id: Review.pluck(:user_id)).sample&.id,
+    user_id: User.all.sample.id,
     rating: rand(1..5),
     comment: Faker::Hipster.paragraph)
 end

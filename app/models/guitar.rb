@@ -4,6 +4,8 @@ class Guitar < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many_attached :photos
 
+  has_many :chatrooms
+
   include PgSearch::Model
   pg_search_scope :search_all_guitars,
     against: [ :name, :caption, :description, :guitar_type ],
