@@ -57,10 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_60_224218) do
     t.bigint "user1_id"
     t.bigint "user2_id"
     t.bigint "guitar_id"
-    t.bigint "booking_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["booking_id"], name: "index_chatrooms_on_booking_id"
     t.index ["guitar_id"], name: "index_chatrooms_on_guitar_id"
     t.index ["user1_id"], name: "index_chatrooms_on_user1_id"
     t.index ["user2_id"], name: "index_chatrooms_on_user2_id"
@@ -122,7 +120,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_60_224218) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "guitars"
   add_foreign_key "bookings", "users"
-  add_foreign_key "chatrooms", "bookings"
   add_foreign_key "chatrooms", "guitars"
   add_foreign_key "chatrooms", "users", column: "user1_id"
   add_foreign_key "chatrooms", "users", column: "user2_id"

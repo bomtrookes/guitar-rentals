@@ -1,0 +1,9 @@
+<div class="message">
+  <div class="meta">
+    <span class="author"><%= message.sender.first_name %></span>
+    <span class="timestamp"><%= message.created_at.strftime('%b %d, %Y %H:%M') %></span>
+  </div>
+  <div class="content">
+    <%= message.content %>
+  </div>
+</div>
