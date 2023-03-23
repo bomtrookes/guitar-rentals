@@ -1,11 +1,12 @@
 <div class="container mt-3 mb-5">
-  <div class="messages">
+
+  <div class="messages" data-controller="messages" data-chatroom-id="<%= @chatroom.id %>">
     <%= render partial: 'messages/message', collection: @chatroom.messages.order(created_at: :asc) %>
   </div>
 
 
   <%= form_with(model: [@chatroom, @chatroom.messages.build], url: guitar_chatroom_messages_path(@chatroom.guitar, @chatroom), method: :post, remote: true) do |form| %>
-    <div class="field">
+    <div class="field mt-3">
       <%= form.text_area :content, placeholder: "Type your message here..." %>
     </div>
     <div class="actions">

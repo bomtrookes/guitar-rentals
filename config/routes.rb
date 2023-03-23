@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'chatroom/index'
-  get 'messages/index'
+  # get 'chatroom/index'
+  # get 'messages/index'
   get 'users/edit'
   devise_for :users
 
@@ -15,14 +15,14 @@ Rails.application.routes.draw do
   resources :guitars do
     resources :bookings
     resources :reviews
-
     resources :chatrooms do
-      resources :messages
+      resources :messages, only: [:index, :create]
     end
 
     collection do
       get 'owned'
     end
+
 
   end
 
@@ -30,5 +30,6 @@ Rails.application.routes.draw do
   resources :bookings, only: :destroy
   resources :reviews, only: :destroy
   resources :guitars, only: :destroy
+  resources :chatrooms, only: :index
 
 end

@@ -4,7 +4,10 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show]
 
   def index
-    @messages = Message.all
+    @chatroom = Chatroom.find(params[:chatroom_id])
+    @messages = @chatroom.messages
+    render json: @messages
+    # look into ActionCable
   end
 
   def show

@@ -16,5 +16,11 @@ application.register("hello", HelloController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import MessagesController from "./messages_controller"
+application.register("messages", MessagesController)
+
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
+
+import SearchController from "./search_controller"
+application.register("search", SearchController)

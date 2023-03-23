@@ -1,9 +1,13 @@
-<div class="message">
-  <div class="meta">
-    <span class="author"><%= message.sender.first_name %></span>
-    <span class="timestamp"><%= message.created_at.strftime('%b %d, %Y %H:%M') %></span>
+<% if message.sender == current_user%>
+  <div class="sent-message">
+<% else %>
+  <div class="received-message">
+<% end %>
+      <span class="author"><%= message.sender.first_name %></span>
+    <div class="content">
+      <%= message.content %>
+    </div>
+    <div class="meta">
+      <span class="timestamp"><%= message.created_at.strftime('%b %d, %Y %H:%M') %></span>
+    </div>
   </div>
-  <div class="content">
-    <%= message.content %>
-  </div>
-</div>

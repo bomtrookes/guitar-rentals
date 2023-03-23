@@ -1,11 +1,11 @@
 class ChatroomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_chatroom, only: [:show, :destroy]
+  before_action :set_user, only: [:index, :show]
   before_action :require_participant, only: [:show]
 
   def index
-    @chatrooms = Chatroom.all
-    @user = current_user
+    @chatrooms = Chatroom.where('user1_id = ? OR user2_id = ?', current_user.id, current_user.id)
   end
 
   def show
@@ -67,5 +67,9 @@ class ChatroomsController < ApplicationController
       flash[:error] = "You are not authorized to view this chatroom."
       redirect_to root_path
     end
+  end
+
+  def set_user
+    @user = current_user
   end
 end

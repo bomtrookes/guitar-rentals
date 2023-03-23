@@ -1,0 +1,7 @@
+<div class="container mt-3 mb-5">
+  <% @chatrooms.each do |chatroom| %>
+    <div class="container pt-3 pb-3">
+      <%= link_to chatroom.guitar.name, guitar_chatroom_path(chatroom.guitar, chatroom) %>
+    </div>
+  <% end %>
+</div>

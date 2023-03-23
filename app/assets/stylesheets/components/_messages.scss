@@ -1,0 +1,33 @@
+.sent-message, .received-message {
+  max-width: 80%;
+  border-radius: 8px;
+  padding: 8px 16px;
+  border: 1px solid #80808029;
+  margin-bottom: 8px;
+  .author {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .meta {
+    font-size: 12px;
+    color: #626262;
+    text-align: right;
+  }
+}
+.sent-message {
+  background: rgba(169, 169, 169, 0.3);
+  text-align: right;
+  margin-left: 20%;
+}
+.received-message {
+  background: rgba(22, 106, 222, 0.3);
+  text-align: left;
+  margin-right: 20%;
+}
+
+#message_content {
+  width: 100%;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-bottom: 8px;
+}
