@@ -2,12 +2,12 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_chatroom, only: [:index, :create, :show]
   before_action :set_message, only: [:show]
+  before_action :set_user, only: [:create]
 
   def index
-    @chatroom = Chatroom.find(params[:chatroom_id])
     @messages = @chatroom.messages
     render json: @messages
-    # look into ActionCable
+
   end
 
   def show
@@ -15,15 +15,19 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @user = current_user
     @message = Message.new(message_params)
     @message.chatroom = @chatroom
     @message.sender = current_user
     @message.receiver = @chatroom.user1 == current_user ? @chatroom.user2 : @chatroom.user1
-    if @message.save
-      redirect_to guitar_chatroom_path(@chatroom.guitar, @chatroom)
-    else
-      render 'chatrooms/show'
+    # handle AJAX
+    respond_to do |format|
+      if @message.save
+        format.html { redirect_to guitar_chatroom_path(@chatroom.guitar, @chatroom) }
+        format.json # looks for create.json.jbuilder
+      else
+        format.html { render 'chatrooms/show', status: :unprocessable_entity }
+        format.json
+      end
     end
   end
 
@@ -35,5 +39,9 @@ class MessagesController < ApplicationController
 
   def set_chatroom
     @chatroom = Chatroom.find(params[:chatroom_id])
+  end
+
+  def set_user
+    @user = current_user
   end
 end
