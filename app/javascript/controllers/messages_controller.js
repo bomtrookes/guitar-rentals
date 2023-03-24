@@ -18,30 +18,10 @@ export default class extends Controller {
     fetch(url, options)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        if (data.my_message) {
+          this.itemsTarget.insertAdjacentHTML("beforeend", data.my_message)
+        }
+        this.formTarget.outerHTML = data.my_form
       })
   }
-
-  // loadMessages() {
-  //   const chatroomId = this.element.dataset.chatroomId;
-  //   fetch(`/chatrooms/${chatroomId}/messages`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       this.renderMessages(data);
-  //       setTimeout(() => {
-  //         this.loadMessages();
-  //       }, 1000); // Poll every 1 second
-  //     });
-  // }
-
-  // renderMessages(messages) {
-  //   this.messagesTarget.innerHTML = ""; // Clear previous messages
-  //   messages.forEach(message => {
-  //     const html = `<div class="message">
-  //       <span class="author">${message.author}</span>
-  //       <span class="body">${message.body}</span>
-  //     </div>`;
-  //     this.messagesTarget.insertAdjacentHTML("beforeend", html);
-  //   });
-  // }
 }
