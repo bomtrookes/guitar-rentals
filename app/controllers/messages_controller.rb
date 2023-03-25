@@ -19,16 +19,26 @@ class MessagesController < ApplicationController
     @message.chatroom = @chatroom
     @message.sender = current_user
     @message.receiver = @chatroom.user1 == current_user ? @chatroom.user2 : @chatroom.user1
-    # handle AJAX
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to guitar_chatroom_path(@chatroom.guitar, @chatroom) }
-        format.json # looks for create.json.jbuilder
-      else
-        format.html { render 'chatrooms/show', status: :unprocessable_entity }
-        format.json
-      end
+
+    if @message.save
+      ChatroomChannel.broadcast_to(
+        @chatroom,
+        render_to_string(partial: "message", locals: {message: @message})
+      )
+      head :ok
+    else
+      render 'chatrooms/show', status: :unprocessable_entity
     end
+    # handle AJAX
+    # respond_to do |format|
+    #   if @message.save
+    #     format.html { redirect_to guitar_chatroom_path(@chatroom.guitar, @chatroom) }
+    #     format.json # looks for create.json.jbuilder
+    #   else
+    #     format.html { render 'chatrooms/show', status: :unprocessable_entity }
+    #     format.json
+    #   end
+    # end
   end
 
   private

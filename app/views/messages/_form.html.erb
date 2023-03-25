@@ -1,4 +1,4 @@
-<%= form_with(model: [@chatroom, @chatroom.messages.build], url: guitar_chatroom_messages_path(@chatroom.guitar, @chatroom), method: :post, remote: true, data: { messages_target: "form", action: "submit->messages#send" }) do |form| %>
+<%= form_with(model: [@chatroom, @chatroom.messages.build], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, url: guitar_chatroom_messages_path(@chatroom.guitar, @chatroom), method: :post, remote: true, data: { messages_target: "form", action: "submit->messages#send" }) do |form| %>
     <div class="field mt-3">
       <%= form.text_area :content, placeholder: "Type your message here..." %>
     </div>
