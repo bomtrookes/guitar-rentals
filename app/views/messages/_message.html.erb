@@ -1,7 +1,7 @@
 <% if message.sender == current_user %>
-  <div class="sent-message">
+  <div id="message-<%= message.id %>" class="sent-message">
 <% else %>
-  <div class="received-message">
+  <div id="message-<%= message.id %>" class="received-message">
 <% end %>
       <span class="author"><%= message.sender.first_name %></span>
     <div class="content">
