@@ -58,6 +58,7 @@ class GuitarsController < ApplicationController
   def show
     @user = @guitar.user
     @booking = @guitar.bookings.build
+    @more_guitars = @user.guitars.where.not(id: @guitar.id)
     @markers =
       [
         lat: @user.latitude,

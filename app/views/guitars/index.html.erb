@@ -8,18 +8,21 @@
       <% end %>
     </div>
 
-    <%= form_with url: guitars_path, method: :get, class: "d-flex mb-3" do %>
-      <%= text_field_tag :query,
-        params[:query],
-        id: "search",
-        class: "form-control",
-        placeholder: "Search..."
-      %>
-      <%= submit_tag "Search", class: "btn btn-dark" %>
-    <% end %>
+    <div class="search-container">
+      <%= form_with url: guitars_path, method: :get, class: "d-flex mb-3" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          id: "search",
+          class: "form-control",
+          placeholder: "Search..."
+        %>
+        <%#= submit_tag "Search", class: "btn btn-dark" %>
+        <div class="clear-button">Clear</div>
+      <% end %>
+    </div>
 
     <% @guitars.each do |guitar| %>
-      <%= link_to guitar_path(guitar), class: "card-col col-lg-4 col-md-6 mb-4" do %>
+      <%= link_to guitar_path(guitar, anchor: "guitar-#{guitar.id}"), class: "card-col col-lg-4 col-md-6 mb-4" do %>
 
         <div class="g-card selected">
           <div class="g-card-image">
@@ -30,7 +33,7 @@
             <% end %>
           </div>
           <div class="g-txtbox">
-            <h4 class="g-card-name"><%= guitar.name %></h4>
+            <h6 class="g-card-name"><%= truncate(guitar.name, length: 27, seperator: ' ') %></h6>
             <p class="g-card-rating"><%= guitar.average_rating %></p>
             <p class="g-card-type"><%= guitar.guitar_type %></p>
             <p class="g-card-price">£<%= guitar.cost_per_day %>0 per night</p>

@@ -1,0 +1,21 @@
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+.clear-button {
+  position: absolute;
+  top: 35%;
+  right: 25px;
+  transform: translateY(-50%);
+  padding: 5px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 3px;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+.clear-button:hover {
+  background-color: #bbb;
+}

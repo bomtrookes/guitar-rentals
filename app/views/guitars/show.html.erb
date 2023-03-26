@@ -2,7 +2,7 @@
   <h1><%= @guitar.name %></h1>
 
   <div class="d-flex justify-content-center align-items-center">
-    <% if user_signed_in? %>
+    <% if @guitar.user == current_user %>
       <%= link_to "Edit", edit_guitar_path(@guitar), class: "btn btn-dark" %>
       <%= simple_form_for(@guitar, authenticity_token: true, method: :delete) do |f| %>
         <%= f.button :submit, "Delete", class: "btn btn-danger" %>
@@ -66,31 +66,33 @@
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
 
-<div class="container">
-<hr>
-  <h5>More Guitars available from <%= @user.first_name %></h5>
-  <%# user image avatar %>
-  <br>
-  <div class="row">
-    <% @user.guitars.limit(3).each do |guitar| %>
+<% if @more_guitars.present? %>
+  <div class="container">
+  <hr>
+    <h5>More Guitars available from <%= @user.first_name %></h5>
+    <%# user image avatar %>
+    <br>
+    <div class="row">
+      <% @more_guitars.limit(3).each do |guitar| %>
 
-      <div class="col-sm-4">
-        <div class="card">
-          <%= link_to guitar_path(guitar) do %>
-            <%= cl_image_tag guitar.photos[0].key, class: "card-img-top" %>
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= guitar.name %></h5>
-            <p class="card-text"><%= guitar.guitar_type %></p>
-            <p class="card-text"><%= guitar.cost_per_day %> per day</p>
-            <p class="card-text"><%= guitar.reviews.count %> reviews</p>
+        <div class="col-sm-4">
+          <div class="card">
+            <%= link_to guitar_path(guitar) do %>
+              <%= cl_image_tag guitar.photos[0].key, class: "card-img-top" %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= guitar.name %></h5>
+              <p class="card-text"><%= guitar.guitar_type %></p>
+              <p class="card-text"><%= guitar.cost_per_day %> per day</p>
+              <p class="card-text"><%= guitar.reviews.count %> reviews</p>
+            </div>
           </div>
         </div>
-      </div>
 
-    <% end %>
-</div>
-</div>
+      <% end %>
+  </div>
+  </div>
+<% end %>
 
 <div class="container">
   <%= button_to "Message User", guitar_chatrooms_path(guitar_id: @guitar.id), method: :post %>
