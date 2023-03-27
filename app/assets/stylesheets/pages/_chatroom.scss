@@ -1,0 +1,30 @@
+#chatroom {
+  padding: 8px 12px;
+  min-height: 60vh;
+  a {
+    text-decoration: none;
+    color: rgb(44, 44, 44);
+  }
+  .inbox {
+    display: grid;
+    padding: 12px;
+    font-size: 14px;
+    border-bottom: 1px rgba(211, 211, 211, 0.4) solid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-areas:
+      "user subject date";
+    &:hover {
+      color: rgb(0, 0, 0);
+    }
+  }
+  .user {
+    grid-area: user;
+  }
+  .subject {
+    grid-area: subject;
+  }
+  .date {
+    grid-area: date;
+    text-align: right;
+  }
+}

@@ -20,9 +20,9 @@
           <div class="g-txtbox">
             <h6 class="g-card-name"><%= guitar.name %></h6>
             <p class="g-card-rating"><%= guitar.average_rating %></p>
-            <%# <p class="g-card-type">= guitar.guitar_type</p> %>
+            <p class="g-card-type"><%= guitar.guitar_type %></p>
             <%# <p class="g-card-type">= guitar.user.name</p> %>
-            <p class="g-card-type">£<%= guitar.cost_per_day %> day</p>
+            <p class="g-card-price">£<%= guitar.cost_per_day %> day</p>
           </div>
         </div>
       <% end %>
