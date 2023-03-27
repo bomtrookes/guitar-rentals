@@ -17,13 +17,17 @@
           </li>
 
           <li class="nav-item dropdown">
-            <%= image_tag("avatar.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+            <% if @user.avatar.attached? %>
+              <%= cl_image_tag(@user.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false)%>
+            <% else %>
+              <%= image_tag("https://res.cloudinary.com/dzxuvey8d/image/upload/v1660399373/default-user_cdb0ks.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+            <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Bookings", user_bookings_path(@user), class: "dropdown-item" %>
-              <%= link_to "My Guitars", owned_guitars_path(@user), class: "dropdown-item" %>
+              <%= link_to "Bookings", user_bookings_path(current_user), class: "dropdown-item" %>
+              <%= link_to "My Guitars", owned_guitars_path(current_user), class: "dropdown-item" %>
               <%= link_to "Inbox", chatrooms_path, class: "dropdown-item" %>
               <hr>
-              <%= link_to "Account", "#", class: "dropdown-item" %>
+              <%= link_to "Account", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>

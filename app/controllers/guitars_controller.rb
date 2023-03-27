@@ -3,39 +3,20 @@ class GuitarsController < ApplicationController
   before_action :set_guitar, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:index, :new, :edit, :owned]
 
-  def destroy
-    @guitar = Guitar.find(params[:id])
-    if @guitar.destroy!
-      puts "trying to destory!"
-      redirect_to guitars_path
-    else
-      redirect_to guitars_path
-    end
-  end
-
   def index
     @users = User.all
     if params[:query].present?
       @guitars = Guitar.search_all_guitars(params[:query])
-      @markers = @users.geocoded.map do |user|
-        {
-          lat: user.latitude,
-          lng: user.longitude,
-          info_window_html: render_to_string(partial: "infos_window", locals: {user: user}),
-          marker_html: render_to_string(partial: "marker")
-        }
-      end
     else
       @guitars = Guitar.all
-      # DRY - refactor this code
-      @markers = @users.geocoded.map do |user|
-        {
-          lat: user.latitude,
-          lng: user.longitude,
-          info_window_html: render_to_string(partial: "infos_window", locals: {user: user}),
-          marker_html: render_to_string(partial: "marker")
-        }
-      end
+    end
+    @markers = @users.geocoded.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude,
+        info_window_html: render_to_string(partial: "infos_window", locals: {user: user}),
+        marker_html: render_to_string(partial: "marker")
+      }
     end
   end
 
@@ -77,6 +58,16 @@ class GuitarsController < ApplicationController
       redirect_to @guitar
     else
       render :edit
+    end
+  end
+
+  def destroy
+    @guitar = Guitar.find(params[:id])
+    if @guitar.destroy!
+      puts "trying to destory!"
+      redirect_to guitars_path
+    else
+      redirect_to guitars_path
     end
   end
 

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # get 'chatroom/index'
   # get 'messages/index'
-  get 'users/edit'
-  devise_for :users
+  # get 'users/edit'
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
 
   root to: "pages#home"
 
