@@ -1,4 +1,6 @@
 class Guitar < ApplicationRecord
+  include ActionView::Helpers
+
   belongs_to :user
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
@@ -14,10 +16,7 @@ class Guitar < ApplicationRecord
   }
 
   def average_rating
-    if reviews.length == 0
-      "-"
-    else
-      "⭐️#{reviews.average(:rating).to_f.round(1)}"
-    end
+    reviews.length == 0 ? "" : "#{content_tag(:i, "", class: "bi bi-star")} #{reviews.average(:rating).round(1)}".html_safe
   end
+
 end
