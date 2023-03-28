@@ -1,0 +1,13 @@
+<%# inbox %>
+<% @chatrooms.each do |chatroom| %>
+  <%= link_to guitar_chatroom_path(chatroom.guitar, chatroom) do %>
+
+    <div class="inbox">
+      <span class="user"><strong><%= chatroom.guitar.user.first_name %></strong></span>
+      <span class="subject"><strong><%= chatroom.guitar.name %> - </strong>
+        <%= chatroom.messages.last.content %></span>
+      <span class="date"><strong><%= chatroom.latest_message %></strong></span>
+    </div>
+
+  <% end %>
+<% end %>

@@ -1,4 +1,4 @@
-#chatroom {
+.chatroom {
   padding: 8px 12px;
   min-height: 60vh;
   a {
@@ -27,7 +27,52 @@
     grid-area: date;
     text-align: right;
   }
+  .side-inbox {
+    .inbox {
+      font-size: 14px;
+      border-bottom: 1px rgba(211, 211, 211, 0.4) solid;
+      grid-template-columns: 70% 30%;
+      grid-template-rows: 0.5fr 0.5fr;
+      grid-template-areas:
+        "user date"
+        "subject subject";
+    }
+    .subject strong {
+      display: none;
+    }
+  }
 }
 #session {
-  min-height: 60vh;
+  height: 75vh;
+  margin-right: 12px;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 80% 20%;
+  grid-template-areas:
+    "inbox chat"
+    "inbox form";
+  .messages {
+    grid-area: chat;
+    overflow-y: scroll;
+    padding-left: 12px;
+  }
+  form {
+    position: relative;
+    margin-left: 12px;
+    grid-area: form;
+    button {
+      border-radius: 4px;
+      background-color: darkgrey;
+      border: 1px solid lightgrey;
+      color: white;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+  .side {
+    grid-area: inbox;
+    overflow-y: scroll;
+    border-right: 1px rgba(211, 211, 211, 0.4) solid;
+  }
 }
