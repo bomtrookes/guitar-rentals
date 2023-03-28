@@ -21,8 +21,13 @@
   <div class="info-box mt-4 mb-3">
     <div class="guitar-info">
       <!-- <p><%= @guitar.caption %></p> -->
-      <h4>Renting from <%= @guitar.user.first_name %></h4>
-      <p><%= @guitar.guitar_type %></p>
+      <div class="d-flex justify-content-between">
+        <div>
+          <h4>Renting from <%= @guitar.user.first_name %></h4>
+          <p><%= @guitar.guitar_type %></p>
+        </div>
+        <%= button_to "Message #{@guitar.user.first_name}", guitar_chatrooms_path(guitar_id: @guitar.id), method: :post, class: "btn btn-dark" %>
+      </div>
       <hr>
       <p id="description"><%= @guitar.description %></p>
       <!-- <p><%= @user.address %></p> -->
@@ -42,8 +47,8 @@
           <div>
             <%= f.input :start_date, html5: true, input_html: {class: "datepicker"}, value: Date.today.to_s, data: { target: "form", action: "change->modal#bookingUpdate" }   %>
             <%= f.input :end_date, html5: true, input_html: {class: "datepicker"}, value: (Date.today + 1).to_s, data: { target: "form", action: "change->modal#bookingUpdate" }  %>
+            <%= f.submit 'Book', class: "btn btn-dark" %>
           </div>
-          <%= f.submit 'Book' %>
         <% end %>
         <div class="container mt-3" data-controller="booking">
           <p id="total-cost">Total: £<%= @guitar.cost_per_day %></p>
@@ -93,7 +98,3 @@
   </div>
   </div>
 <% end %>
-
-<div class="container">
-  <%= button_to "Message User", guitar_chatrooms_path(guitar_id: @guitar.id), method: :post %>
-</div>

@@ -9,7 +9,7 @@
         <span class="subject"><strong><%= chatroom.guitar.name %></strong> -
           <%= chatroom.messages.last.content %></span>
         <%# created_at.strftime('%b %d, %Y %H:%M') %>
-        <span class="date"><strong><%= chatroom.messages.last.created_at.strftime('%b %d') %></strong></span>
+        <span class="date"><strong><%= chatroom.latest_message %></strong></span>
       </div>
 
     <% end %>

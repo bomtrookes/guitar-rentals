@@ -1,14 +1,14 @@
-<div class="container mt-4">
-  <h1>New Guitar</h1>
+<div class="container mt-4 mb-5" style="position:relative">
+  <h1 class="mb-3">New Guitar</h1>
   <%= simple_form_for @guitar do |f| %>
-    <%= f.input :name %>
-    <%= f.input :address %>
-    <%= f.input :caption %>
-    <%= f.input :description %>
-    <%= f.input :cost_per_day %>
-    <%= f.input :guitar_type %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit %>
+    <%= f.input :name, label: false, placeholder: "Name" %>
+    <%= f.input :caption, label: false, placeholder: "Caption" %>
+    <%= f.input :description, label: false, placeholder: "Description" %>
+    <%= f.input :cost_per_day, label: false, placeholder: "Cost Per Day" %>
+    <%= f.input :guitar_type, label: false, placeholder: "Guitar Type" %>
+    <%= f.label :photos, label: "Upload 3 photos", style: "color:#6c757c" %>
+    <%= f.input :photos, as: :file, label: false, input_html: { multiple: true, style: "color:#0e000000" } %>
+    <%= f.submit class: "btn btn-dark", style: "position:absolute;right:0;margin:0 12px" %>
   <% end %>
 </div>
 <br>
