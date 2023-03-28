@@ -29,5 +29,24 @@
   }
 }
 #session {
-  min-height: 60vh;
+  height: 65vh;
+  display: grid;
+  padding: 0 12px;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 80% 20%;
+  grid-template-areas:
+    "inbox chat"
+    "inbox form";
+  .messages {
+    grid-area: chat;
+    overflow-y: scroll;
+  }
+  form {
+    grid-area: form;
+  }
+  #side-inbox {
+    grid-area: inbox;
+    overflow-y: scroll;
+    border-right: 1px rgba(211, 211, 211, 0.4) solid;
+  }
 }
