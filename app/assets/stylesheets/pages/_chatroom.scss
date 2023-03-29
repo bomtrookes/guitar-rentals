@@ -1,4 +1,4 @@
-.chatroom {
+#chatroom {
   padding: 8px 12px;
   min-height: 60vh;
   a {
@@ -17,62 +17,125 @@
       color: rgb(0, 0, 0);
     }
   }
+  .messages {
+    overflow-y: scroll;
+  }
   .user {
     grid-area: user;
+    font-weight: bold;
   }
   .subject {
     grid-area: subject;
+    font-weight: bold;
   }
   .date {
     grid-area: date;
     text-align: right;
   }
-  .side-inbox {
-    .inbox {
-      font-size: 14px;
-      border-bottom: 1px rgba(211, 211, 211, 0.4) solid;
-      grid-template-columns: 70% 30%;
-      grid-template-rows: 0.5fr 0.5fr;
-      grid-template-areas:
-        "user date"
-        "subject subject";
-    }
-    .subject strong {
-      display: none;
-    }
-  }
+  // Side-inbox
 }
 #session {
+  font-size: 14px;
   height: 75vh;
-  margin-right: 12px;
   display: grid;
-  grid-template-columns: 25% 75%;
-  grid-template-rows: 80% 20%;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 10% 79% 17%;
   grid-template-areas:
+    "search user"
     "inbox chat"
     "inbox form";
-  .messages {
-    grid-area: chat;
-    overflow-y: scroll;
-    padding-left: 12px;
-  }
-  form {
-    position: relative;
-    margin-left: 12px;
-    grid-area: form;
-    button {
-      border-radius: 4px;
-      background-color: darkgrey;
-      border: 1px solid lightgrey;
-      color: white;
-      position: absolute;
-      right: 0;
-      top: 0;
+  .inbox-search {
+    grid-area: search;
+    input {
+      width: 100%;
     }
+  }
+  .user-info {
+    grid-area: user;
+  }
+  .user-info, .inbox-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px rgba(211, 211, 211, 0.4) solid;
+  }
+  .messages {
+    padding: 0 12px;
+    padding-top: 8px;
+    overflow-y: scroll;
   }
   .side {
     grid-area: inbox;
     overflow-y: scroll;
     border-right: 1px rgba(211, 211, 211, 0.4) solid;
+    a {
+      text-decoration: none;
+      color: rgb(44, 44, 44);
+    }
   }
+  .form-container {
+    grid-area: form;
+    background-color: #474747;
+    padding-top: 12px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    form {
+      width: 90%;
+    }
+    button {
+      position: absolute;
+      border-radius: 8px;
+      background-color: #66baf0;
+      color: white;
+      font-size: 20px;
+      border: 1px solid lightgrey;
+      right: 32px;
+      top: 9px;
+    }
+    #message_content {
+      font-size: 14px !important;
+    }
+  }
+  .inbox-message {
+    grid-area: chat;
+    max-height: 67px;
+    padding: 12px;
+    background-color: white;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.4);
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 0.5fr 1fr;
+    grid-template-areas:
+      "guitar date"
+      "message message";
+    .guitar {
+      grid-area: guitar;
+      font-weight: bold;
+    }
+    .date {
+      grid-area: date;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: right;
+    }
+    .user {
+      grid-area: message;
+      font-size: 12px;
+      font-weight: bold;
+      color:rgb(162, 162, 162);
+      display: inline-block;
+      width: 85%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user span {
+      font-weight: normal;
+    }
+  }
+
 }
