@@ -59,6 +59,7 @@ class GuitarsController < ApplicationController
     @user = @guitar.user
     @booking = @guitar.bookings.build
     @more_guitars = @user.guitars.where.not(id: @guitar.id)
+    @reviewable = @guitar.bookings.where("start_date" < Date.today.to_s).where(user: current_user)
     @markers =
       [
         lat: @user.latitude,

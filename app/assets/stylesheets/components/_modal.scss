@@ -1,6 +1,6 @@
 .gallery-modal, .review-modal {
+  place-items: center;
   display: none;
-  color: white;
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -11,5 +11,43 @@
   z-index: 100;
 }
 .open {
-  display: block;
+  display: grid;
+}
+// Review Modal
+.review-container {
+  background-color: white;
+  border-radius: 8px;
+  height: 80%;
+  min-height: 350px;
+  width: 80%;
+  padding: 12px;
+  padding-top: 0;
+  overflow-y: scroll;
+  #write-review a {
+    color: black;
+    padding-right: 12px;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+  }
+  .review-info {
+    padding-top: 12px;
+    background-color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: 77.5%;
+    position: fixed;
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 10;
+  }
+  .review-card:first-of-type {
+    margin-top: 62px !important;
+  }
+  .close {
+    cursor: pointer;
+  }
+  #reviews {
+    text-decoration: none;
+    cursor: default !important;
+  }
 }
