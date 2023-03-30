@@ -49,3 +49,37 @@
     text-decoration: underline;
   }
 }
+// Review Cards
+.review-card {
+  display: grid;
+  padding: 12px;
+  font-size: 14px;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 0.5fr 1fr;
+  grid-template-areas: "avatar user"
+                       ". review";
+  .review-avatar {
+    grid-area: avatar;
+    img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+    }
+  }
+  .review-user {
+    grid-area: user;
+    line-height: 0.5;
+    padding: 0.7em 0;
+    p:first-child {
+      font-weight: bold;
+    }
+    p:nth-of-type(2) {
+      color: grey;
+    }
+  }
+  .review-text {
+    grid-area: review;
+    text-align: justify;
+    font-size: 12px;
+  }
+}

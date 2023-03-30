@@ -15,15 +15,19 @@ export default class extends Controller {
   }
   openGallery() {
     document.querySelector(".gallery-modal").classList.add("open")
+    document.querySelector("body").style.overflow = "hidden";
   }
   closeGallery() {
     document.querySelector(".gallery-modal").classList.remove("open")
+    document.querySelector("body").style.overflow = "auto";
   }
   openReview() {
     document.querySelector(".review-modal").classList.add("open")
+    document.querySelector("body").style.overflow = "hidden";
   }
   closeReview() {
     document.querySelector(".review-modal").classList.remove("open")
+    document.querySelector("body").style.overflow = "auto";
   }
 
   bookingUpdate() {

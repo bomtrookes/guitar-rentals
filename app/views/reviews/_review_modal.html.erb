@@ -1,0 +1,35 @@
+<div class="review-modal">
+  <div class="review-container">
+    <div class="review-info d-flex justify-content-between">
+      <div class="d-flex">
+          <p><%= @guitar.average_rating %></p>
+          <p id="reviews"><%= @guitar.reviews.count %> reviews</p>
+        </div>
+      <div>
+        <%#= link_to "Write a review", new_guitar_review_path(@guitar) %>
+        <p class="close" data-action="click->modal#closeReview"><i class="bi bi-x-circle"></i></p>
+      </div>
+    </div>
+    <div>
+
+    <% if @guitar.reviews.empty? %>
+      <p>No reviews yet</p>
+    <% else %>
+      <% @guitar.reviews.each do |review| %>
+
+        <div class="review-card">
+          <div class="review-avatar"><%= image_tag("avatar.jpg") %></div>
+          <div class="review-user">
+            <p><%= review.user.first_name %></p>
+            <p><%= review.created_at.strftime("%B %Y") %></p>
+          </div>
+          <div class="review-text">
+            <p ><%= review.comment %></p>
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>
