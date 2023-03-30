@@ -5,9 +5,11 @@
           <p><%= @guitar.average_rating %></p>
           <p id="reviews"><%= @guitar.reviews.count %> reviews</p>
         </div>
-      <div>
-        <%#= link_to "Write a review", new_guitar_review_path(@guitar) %>
-        <p class="close" data-action="click->modal#closeReview"><i class="bi bi-x-circle"></i></p>
+      <div class="d-flex">
+        <% if @reviewable %>
+          <p id="write-review"><%= link_to "Write a review", new_guitar_review_path(@guitar)%></p>
+        <% end %>
+          <p class="close" data-action="click->modal#closeReview"><i class="bi bi-x-circle"></i></p>
       </div>
     </div>
     <div>

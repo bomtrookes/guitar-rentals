@@ -23,6 +23,13 @@
   padding: 12px;
   padding-top: 0;
   overflow-y: scroll;
+  #write-review a {
+    color: black;
+    padding-right: 12px;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+  }
   .review-info {
     padding-top: 12px;
     background-color: white;
@@ -41,6 +48,6 @@
   }
   #reviews {
     text-decoration: none;
-    cursor: default;
+    cursor: default !important;
   }
 }

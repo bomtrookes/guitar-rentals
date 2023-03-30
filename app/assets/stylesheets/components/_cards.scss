@@ -53,11 +53,12 @@
 .review-card {
   display: grid;
   padding: 12px;
+  padding-left: 10%;
   font-size: 14px;
   grid-template-columns: 10% 90%;
   grid-template-rows: 0.5fr 1fr;
   grid-template-areas: "avatar user"
-                       ". review";
+                       "review review";
   .review-avatar {
     grid-area: avatar;
     img {
@@ -81,5 +82,6 @@
     grid-area: review;
     text-align: justify;
     font-size: 12px;
+    padding-right: 10%;
   }
 }
