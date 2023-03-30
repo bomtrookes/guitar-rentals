@@ -1,13 +1,15 @@
-<%= simple_form_for [@chatroom.guitar, @chatroom, @chatroom.messages.build],
-  html: {
-    data: { action: "turbo:submit-end->chatroom-subscription#resetForm" },
-    url: guitar_chatroom_messages_path(@chatroom.guitar, @chatroom),
-    method: :post,
-    remote: true
-  } do |f| %>
-  <div class="form-group">
-    <%= f.input :content, label: false, placeholder: "Type your message here...", input_html: { class: "form-control", rows: 2 } %>
-  </div>
-  <%#= f.button :submit, class: "btn btn-primary mt-2", value: "Send" %>
-  <button type="submit"><i class="class='bi bi-send"></i></button>
-<% end %>
+<div class="form-container">
+  <%= simple_form_for [@chatroom.guitar, @chatroom, @chatroom.messages.build],
+    html: {
+      data: { action: "turbo:submit-end->chatroom-subscription#resetForm" },
+      url: guitar_chatroom_messages_path(@chatroom.guitar, @chatroom),
+      method: :post,
+      remote: true
+    } do |f| %>
+    <div class="form-group">
+      <%= f.input :content, label: false, placeholder: "Type your message here...", input_html: { class: "form-control", rows: 2, style: "resize:none" } %>
+    </div>
+    <%#= f.button :submit, class: "btn btn-primary mt-2", value: "Send" %>
+    <button type="submit"><i class="class='bi bi-send"></i></button>
+  <% end %>
+</div>
