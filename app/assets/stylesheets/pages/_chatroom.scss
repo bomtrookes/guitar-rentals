@@ -1,3 +1,6 @@
+.chatrooms-show {
+  overflow: hidden;
+}
 #chatroom {
   padding: 8px 12px;
   min-height: 60vh;
@@ -36,7 +39,7 @@
 }
 #session {
   font-size: 14px;
-  height: 75vh;
+  height: 88vh;
   display: grid;
   grid-template-columns: 30% 70%;
   grid-template-rows: 10% 79% 17%;
@@ -52,6 +55,9 @@
   }
   .user-info {
     grid-area: user;
+    h6 {
+      margin: 0;
+    }
   }
   .user-info, .inbox-search {
     display: flex;
@@ -77,7 +83,6 @@
   .form-container {
     grid-area: form;
     background-color: #474747;
-    padding-top: 12px;
     display: flex;
     position: relative;
     flex-direction: column;
