@@ -67,6 +67,7 @@ class GuitarsController < ApplicationController
         info_window_html: render_to_string(partial: "info_window", locals: {guitar: @guitar}),
         marker_html: render_to_string(partial: "marker")
       ]
+    @favourite = current_user.favourites.find_by(guitar_id: @guitar)
   end
 
   def edit

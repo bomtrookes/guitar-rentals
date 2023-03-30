@@ -64,6 +64,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_60_224218) do
     t.index ["user2_id"], name: "index_chatrooms_on_user2_id"
   end
 
+  create_table "favourites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "guitar_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guitar_id"], name: "index_favourites_on_guitar_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
+
   create_table "guitars", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -112,6 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_60_224218) do
     t.float "latitude"
     t.float "longitude"
     t.string "address"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -123,6 +133,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_60_224218) do
   add_foreign_key "chatrooms", "guitars"
   add_foreign_key "chatrooms", "users", column: "user1_id"
   add_foreign_key "chatrooms", "users", column: "user2_id"
+  add_foreign_key "favourites", "guitars"
+  add_foreign_key "favourites", "users"
   add_foreign_key "guitars", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users", column: "receiver_id"

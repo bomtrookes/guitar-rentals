@@ -1,5 +1,18 @@
 <div class="container mt-3 mb-2  d-flex align-items-center justify-content-between">
-  <h1><%= @guitar.name %></h1>
+  <div class="d-flex justify-content-between guitar-name">
+    <h1><%= @guitar.name %></h1>
+
+    <% if @favourite %>
+      <%= button_to guitar_favourite_path(@guitar, @favourite), method: :delete, class: "fav-btn" do %>
+        <i class="bi bi-heart-fill"></i>
+      <% end %>
+    <% else %>
+      <%= button_to guitar_favourites_path(@guitar), method: :post, class: "fav-btn" do %>
+        <i class="bi bi-heart"></i>
+      <% end %>
+    <% end %>
+
+  </div>
 
   <div class="d-flex justify-content-center align-items-center">
     <% if @guitar.user == current_user %>
@@ -86,7 +99,7 @@
               <%= cl_image_tag guitar.photos[0].key, class: "card-img-top" %>
             <% end %>
             <div class="card-body">
-              <h5 class="card-title"><%= guitar.name %></h5>
+              <h6 class="card-title"><%= guitar.name %></h6>
               <p class="card-text"><%= guitar.guitar_type %></p>
               <p class="card-text"><%= guitar.cost_per_day %> per day</p>
               <p class="card-text"><%= guitar.reviews.count %> reviews</p>
@@ -95,6 +108,6 @@
         </div>
 
       <% end %>
-  </div>
+    </div>
   </div>
 <% end %>

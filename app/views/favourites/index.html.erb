@@ -1,0 +1,14 @@
+<div id="favourites" class="container mt-3">
+  <% if @favourites %>
+    <% @favourites.each do |favourite| %>
+      <div class="card p-3">
+        <h5 class="card-title"><%= favourite.guitar.name %></h5>
+        <%#= button_to "Remove from favourites", user_favourite_path(current_user, favourite), method: :delete, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="container p-3" style="display:grid;place-items:center">
+      <h3>You have no favourites yet</h3>
+    </div>
+  <% end %>
+</div>

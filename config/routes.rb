@@ -10,11 +10,13 @@ Rails.application.routes.draw do
     resources :bookings
     resources :reviews
     resources :guitars
+    resources :favourites, only: [:index]
   end
 
   resources :guitars do
     resources :bookings
     resources :reviews
+    resources :favourites, only: [:create, :destroy]
     resources :chatrooms do
       resources :messages, only: [:index, :create]
     end
