@@ -1,0 +1,22 @@
+<div data-controller="favourite">
+  <% if @favourite %>
+
+    <%= button_to guitar_favourite_path(@guitar, @favourite),
+    method: :delete,
+    class: "fav-btn",
+    form: { data: { favourite_target: "form" } },
+    data: {favourite_target: "button", action: "submit->favourite#update"} do %>
+      <i class="bi bi-heart-fill"></i>
+    <% end %>
+
+  <% else %>
+
+    <%= button_to guitar_favourites_path(@guitar),
+    method: :post,
+    class: "fav-btn",
+    form: { data: { favourite_target: "form" } },
+    data: {favourite_target: "button", action: "submit->favourite#update"} do %>
+      <i class="bi bi-heart"></i>
+    <% end %>
+  <% end %>
+</div>

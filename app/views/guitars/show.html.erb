@@ -2,15 +2,7 @@
   <div class="d-flex justify-content-between guitar-name">
     <h1><%= @guitar.name %></h1>
 
-    <% if @favourite %>
-      <%= button_to guitar_favourite_path(@guitar, @favourite), method: :delete, class: "fav-btn" do %>
-        <i class="bi bi-heart-fill"></i>
-      <% end %>
-    <% else %>
-      <%= button_to guitar_favourites_path(@guitar), method: :post, class: "fav-btn" do %>
-        <i class="bi bi-heart"></i>
-      <% end %>
-    <% end %>
+    <%= render "favourites/button" %>
 
   </div>
 
