@@ -1,14 +1,48 @@
-<div id="favourites" class="container mt-3">
-  <% if @favourites %>
-    <% @favourites.each do |favourite| %>
-      <div class="card p-3">
-        <h5 class="card-title"><%= favourite.guitar.name %></h5>
-        <%#= button_to "Remove from favourites", user_favourite_path(current_user, favourite), method: :delete, class: "btn btn-primary" %>
-      </div>
-    <% end %>
-  <% else %>
-    <div class="container p-3" style="display:grid;place-items:center">
-      <h3>You have no favourites yet</h3>
+<div class="container mt-4">
+  <div class="row">
+
+    <div class="d-flex justify-content-between mb-3">
+      <h1>FAVOURITES</h1>
     </div>
-  <% end %>
+
+    <div class="search-container" style="display:none;">
+      <%= form_with url: guitars_path, method: :get, class: "d-flex mb-3" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          id: "search",
+          class: "form-control",
+          placeholder: "Search..."
+        %>
+        <div class="clear-button">Clear</div>
+      <% end %>
+    </div>
+
+    <% if @favourites %>
+    <% @favourites.each do |favourite| %>
+      <%= link_to guitar_path(favourite.guitar, anchor: "guitar-#{favourite.guitar.id}"), class: "card-col col-lg-4 col-md-6 mb-4" do %>
+
+        <div class="g-card selected">
+          <div class="g-card-image">
+            <% if favourite.guitar.photos.attached? %>
+              <%= cl_image_tag favourite.guitar.photos.first.key %>
+            <% else %>
+              <p>no img available</p>
+            <% end %>
+          </div>
+          <div class="g-txtbox">
+            <h6 class="g-card-name"><%= truncate(favourite.guitar.name, length: 27, seperator: ' ') %></h6>
+            <p class="g-card-rating"><%= favourite.guitar.average_rating %></p>
+            <p class="g-card-type"><%= favourite.guitar.guitar_type %></p>
+            <p class="g-card-price">£<%= favourite.guitar.cost_per_day %>0 per night</p>
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+
+    <% else %>
+      <p>You have no favourites yet</p>
+    <% end %>
+
+  </div>
 </div>
