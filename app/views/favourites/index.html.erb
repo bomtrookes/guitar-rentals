@@ -1,11 +1,13 @@
-<div class="container mt-4">
+<div id="favourite-guitars" class="container mt-4">
   <div class="row">
 
     <div class="d-flex justify-content-between mb-3">
       <h1>FAVOURITES</h1>
     </div>
 
-    <div class="search-container" style="display:none;">
+    <% if @favourites.present? %>
+
+    <div class="search-container">
       <%= form_with url: guitars_path, method: :get, class: "d-flex mb-3" do %>
         <%= text_field_tag :query,
           params[:query],
@@ -17,9 +19,8 @@
       <% end %>
     </div>
 
-    <% if @favourites %>
     <% @favourites.each do |favourite| %>
-      <%= link_to guitar_path(favourite.guitar, anchor: "guitar-#{favourite.guitar.id}"), class: "card-col col-lg-4 col-md-6 mb-4" do %>
+      <%= link_to guitar_path(favourite.guitar, anchor: "guitar-#{favourite.guitar.id}"), class: "col-md-4 col-sm-6 col-12" do %>
 
         <div class="g-card selected">
           <div class="g-card-image">
@@ -41,7 +42,10 @@
     <% end %>
 
     <% else %>
-      <p>You have no favourites yet</p>
+      <div class="no-content">
+        <p>You have no favourites yet</p>
+        <%= link_to "Browse Guitars", guitars_path %>
+      </div>
     <% end %>
 
   </div>

@@ -4,3 +4,14 @@
   right: 16px;
   z-index: 1000;
 }
+.no-content {
+  display: flex;
+  padding: 6rem;
+  margin-bottom: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: grey;
+}

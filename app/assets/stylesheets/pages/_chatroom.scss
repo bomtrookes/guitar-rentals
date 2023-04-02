@@ -65,6 +65,10 @@
     align-items: center;
     padding: 12px;
     border-bottom: 1px rgba(211, 211, 211, 0.4) solid;
+    a {
+      text-decoration: underline;
+      color: rgb(44, 44, 44);
+    }
   }
   .messages {
     padding: 0 12px;
@@ -98,11 +102,13 @@
       color: white;
       font-size: 20px;
       border: 1px solid lightgrey;
-      right: 32px;
-      top: 9px;
+      right: 0;
+      top: 0;
     }
     #message_content {
       font-size: 14px !important;
+      height: 33px;
+      padding: 6px 39px 6px 12px;
     }
   }
   .inbox-message {

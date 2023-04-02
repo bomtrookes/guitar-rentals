@@ -20,6 +20,7 @@
   }
   h1 {
     font-size: 3.5rem;
+    padding-bottom: 0.4rem
   }
   h2 {
     font-size: 1.8rem;
@@ -28,10 +29,18 @@
     text-decoration: none;
     color: white;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    &:hover {
+      color: rgb(230, 230, 230);
+      text-decoration: underline;
+    }
   }
 }
 .recent {
-  padding: 0 2em;
+  padding: 0 12px;
+  .g-card {
+    min-width: 240px;
+    margin-bottom: 1.5rem;
+  }
   a {
     text-decoration: none;
   }

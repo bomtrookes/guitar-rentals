@@ -39,7 +39,7 @@
           <h4>Renting from <%= @guitar.user.first_name %></h4>
           <p><%= @guitar.guitar_type %></p>
         </div>
-        <%= button_to "Message #{@guitar.user.first_name}", guitar_chatrooms_path(guitar_id: @guitar.id), method: :post, class: "btn btn-dark" %>
+        <%= button_to "Message", guitar_chatrooms_path(guitar_id: @guitar.id), method: :post, class: "btn btn-dark" %>
       </div>
       <hr>
       <p id="description"><%= @guitar.description %></p>
@@ -92,22 +92,27 @@
     <br>
     <div class="row">
       <% @more_guitars.limit(3).each do |guitar| %>
+        <%= link_to guitar_path(guitar), class: "col-md-4 col-sm-6 col-12" do %>
 
-        <div class="col-sm-4">
-          <div class="card">
-            <%= link_to guitar_path(guitar) do %>
-              <%= cl_image_tag guitar.photos[0].key, class: "card-img-top" %>
-            <% end %>
-            <div class="card-body">
-              <h6 class="card-title"><%= guitar.name %></h6>
-              <p class="card-text"><%= guitar.guitar_type %></p>
-              <p class="card-text"><%= guitar.cost_per_day %> per day</p>
-              <p class="card-text"><%= guitar.reviews.count %> reviews</p>
+          <div class="g-card selected">
+            <div class="g-card-image">
+              <% if guitar.photos.attached? %>
+                <%= cl_image_tag guitar.photos.first.key %>
+              <% else %>
+                <p>no img available</p>
+              <% end %>
+            </div>
+            <div class="g-txtbox">
+              <h6 class="g-card-name"><%= truncate(guitar.name, length: 27, seperator: ' ') %></h6>
+              <p class="g-card-rating"><%= guitar.average_rating %></p>
+              <p class="g-card-type"><%= guitar.guitar_type %></p>
+              <p class="g-card-price">£<%= guitar.cost_per_day %>0 per night</p>
             </div>
           </div>
-        </div>
 
+        <% end %>
       <% end %>
+
     </div>
   </div>
 <% end %>
