@@ -9,7 +9,6 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <%= link_to "Back", :back, style: "padding-right: 12px;" %>
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
 
@@ -18,14 +17,16 @@
           </li>
 
           <li class="nav-item dropdown">
-            <%= image_tag("avatar.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+            <i class="bi bi-list" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "All Guitars", guitars_path, class: "dropdown-item" %>
               <%= link_to "Inbox", chatrooms_path, class: "dropdown-item" %>
               <%= link_to "Bookings", user_bookings_path(current_user), class: "dropdown-item" %>
               <%= link_to "My Guitars", owned_guitars_path(current_user), class: "dropdown-item" %>
               <%= link_to "Favourites", user_favourites_path(current_user), class: "dropdown-item" %>
               <hr>
-              <%= link_to "Account", "#", class: "dropdown-item" %>
+              <%= link_to "Account", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>

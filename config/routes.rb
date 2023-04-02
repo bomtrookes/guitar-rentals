@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  # get 'chatroom/index'
-  # get 'messages/index'
-  get 'users/edit'
+
   devise_for :users
 
   root to: "pages#home"
