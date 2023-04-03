@@ -15,9 +15,12 @@ footer {
   }
   .links {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    margin: 0 14rem 16px 14rem;
+    margin-bottom: 16px;
+    i {
+      padding: 0 0.7em;
+    }
     i:hover {
       color: $blue;
       cursor: pointer;

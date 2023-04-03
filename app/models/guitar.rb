@@ -4,10 +4,10 @@ class Guitar < ApplicationRecord
   belongs_to :user
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
-  has_many :favourites
-  has_many_attached :photos
+  has_many :favourites, dependent: :destroy
+  has_many_attached :photos, dependent: :destroy
 
-  has_many :chatrooms
+  has_many :chatrooms, dependent: :destroy
 
   include PgSearch::Model
   pg_search_scope :search_all_guitars,

@@ -3,7 +3,7 @@ class Chatroom < ApplicationRecord
   belongs_to :user2, class_name: 'User'
   belongs_to :guitar
 
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
   validates :user1, presence: true
   validates :user2, presence: true

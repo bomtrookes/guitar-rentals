@@ -3,13 +3,11 @@ Faker::Config.locale = 'en-GB'
 base = "https://res.cloudinary.com/dzxuvey8d/image/upload/v1679101918/development/guitar_rental_seeds/"
 fix = "https://res.cloudinary.com/dzxuvey8d/image/upload/v1679101905/development/guitar_rental_seeds/"
 
-location = [
+locations = [
   "123 Buckingham Palace Rd, London SW1W 9SH",
   "5 Denmark St, London WC2H 8LP",
   "56 Rathbone Pl, London W1T 1JT",
-  "London SW1A 1AA",
   "72 King St, Cambridge CB1 1LN",
-  "Kings Road Arches, 127, Brighton BN1 2FN",
   "23 Carleton Rd, London N7 0QZ",
   "13 Leigh St, London WC1H 9EW",
   "47 Holywell Hill, St Albans AL1 1HD",
@@ -19,6 +17,8 @@ location = [
 ]
 
 puts "Emptying database..."
+
+Chatroom.destroy_all
 Booking.destroy_all
 Guitar.destroy_all
 User.destroy_all
@@ -30,7 +30,7 @@ puts "Creating users..."
     password: "Password123!",
     first_name: Faker::Name.first_name ,
     last_name: Faker::Name.last_name,
-    address: Faker::Address.postcode)
+    address: locations.shuffle.take(1)[0])
 end
 User.create!(
   email: "admin@gmail.com",
