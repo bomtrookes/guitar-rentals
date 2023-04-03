@@ -1,0 +1,39 @@
+.upcoming, .history {
+  border-radius: 8px;
+  background-color: white;
+  padding: 12px;
+  overflow: hidden;
+  title {
+    color: black;
+  }
+  .confirmation {
+    color: black;
+  }
+  .body {
+    width: 100%;
+    padding: 0 24px;
+  }
+  .text {
+    font-size: 14px;
+    color: #6d6d6d;
+    font-style: italic;
+    margin: 0;
+  }
+  .details {
+    color: black;
+  }
+  .actions {
+    text-align: right;
+    font-size: 14px;
+  }
+}
+
+.booking-image {
+  width: fit-content;
+  img {
+    height: 40vw;
+    max-height: 140px;
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+  }
+}

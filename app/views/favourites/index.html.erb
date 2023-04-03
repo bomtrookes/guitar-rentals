@@ -20,12 +20,12 @@
     </div>
 
     <% @favourites.each do |favourite| %>
-      <%= link_to guitar_path(favourite.guitar, anchor: "guitar-#{favourite.guitar.id}"), class: "col-md-4 col-sm-6 col-12" do %>
+      <%= link_to guitar_path(favourite.guitar), class: "col-md-4 col-sm-6 col-12" do %>
 
         <div class="g-card selected">
           <div class="g-card-image">
             <% if favourite.guitar.photos.attached? %>
-              <%= cl_image_tag favourite.guitar.photos.first.key %>
+              <%= cl_image_tag favourite.guitar.photos.first.key, loading: "lazy" %>
             <% else %>
               <p>no img available</p>
             <% end %>

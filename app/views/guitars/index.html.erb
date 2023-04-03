@@ -27,7 +27,7 @@
         <div class="g-card selected">
           <div class="g-card-image">
             <% if guitar.photos.attached? %>
-              <%= cl_image_tag guitar.photos.first.key %>
+              <%= cl_image_tag guitar.photos.first.key, loading: "lazy" %>
             <% else %>
               <p>no img available</p>
             <% end %>
