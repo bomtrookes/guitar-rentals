@@ -15,31 +15,11 @@
           class: "form-control",
           placeholder: "Search..."
         %>
-        <div class="clear-button">Clear</div>
+        <%= submit_tag "Search", class: "btn btn-dark" %>
       <% end %>
     </div>
 
-    <% @favourites.each do |favourite| %>
-      <%= link_to guitar_path(favourite.guitar), class: "col-md-4 col-sm-6 col-12" do %>
-
-        <div class="g-card selected">
-          <div class="g-card-image">
-            <% if favourite.guitar.photos.attached? %>
-              <%= cl_image_tag favourite.guitar.photos.first.key, loading: "lazy" %>
-            <% else %>
-              <p>no img available</p>
-            <% end %>
-          </div>
-          <div class="g-txtbox">
-            <h6 class="g-card-name"><%= truncate(favourite.guitar.name, length: 27, seperator: ' ') %></h6>
-            <p class="g-card-rating"><%= favourite.guitar.average_rating %></p>
-            <p class="g-card-type"><%= favourite.guitar.guitar_type %></p>
-            <p class="g-card-price">£<%= favourite.guitar.cost_per_day %> per night</p>
-          </div>
-        </div>
-
-      <% end %>
-    <% end %>
+    <%= render 'guitars/guitars', guitars: @favourites  %>
 
     <% else %>
       <div class="no-content">

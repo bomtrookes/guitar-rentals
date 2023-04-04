@@ -3,7 +3,7 @@ class FavouritesController < ApplicationController
   before_action :set_guitar, only: [:create, :destroy]
 
   def index
-    @favourites = current_user.favourites
+    @favourites = current_user.favourites.map(&:guitar)
   end
 
   def create

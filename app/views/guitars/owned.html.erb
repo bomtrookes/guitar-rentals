@@ -2,45 +2,32 @@
   <h1>My Guitars</h1>
   <% if @guitars.present? %>
 
-  <div class="search-container">
-    <%= form_with url: guitars_path, method: :get, class: "d-flex mb-3" do %>
-      <%= text_field_tag :query,
-        params[:query],
-        id: "search",
-        class: "form-control",
-        placeholder: "Search..."
-      %>
-      <div class="clear-button">Clear</div>
+    <div class="search-container">
+      <%= form_with url: guitars_path, method: :get, class: "d-flex mb-3" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          id: "search",
+          class: "form-control",
+          placeholder: "Search..."
+        %>
+          <%= submit_tag "Search", class: "btn btn-dark" %>
+      <% end %>
+    </div>
+
+    <% if @active_guitars.present? %>
+    <h2>My Active Guitars</h2>
+      <%= render 'guitars', guitars: @active_guitars %>
     <% end %>
-  </div>
 
-    <% @guitars.each do |guitar| %>
-        <%= link_to guitar_path(guitar), class: "col-md-4 col-sm-6 col-12" do %>
-
-            <div class="g-card selected">
-              <div class="g-card-image">
-                <% if guitar.photos.attached? %>
-                  <%= cl_image_tag guitar.photos.first.key, loading: "lazy" %>
-                <% else %>
-                  <p>no img available</p>
-                <% end %>
-              </div>
-              <div class="g-txtbox">
-                <h6 class="g-card-name"><%= truncate(guitar.name, length: 27, seperator: ' ') %></h6>
-                <p class="g-card-rating"><%= guitar.average_rating %></p>
-                <p class="g-card-type"><%= guitar.guitar_type %></p>
-                <p class="g-card-price">£<%= guitar.cost_per_day %> per night</p>
-              </div>
-            </div>
-
-          <% end %>
+    <% if @inactive_guitars.present? %>
+    <h2>Inactive Guitars</h2>
+      <%= render 'guitars', guitars: @inactive_guitars %>
     <% end %>
+
   <% else %>
-  <div class="no-content">
-    <p>You have no guitars</p>
-    <% if user_signed_in? %>
-      <p><%= link_to "Add Guitar", new_guitar_path, class: "btn btn-secondary" %></p>
-    <% end %>
-  </div>
+    <div class="no-content">
+      <p>You haven't added any guitars</p>
+      <%= link_to "Add a Guitar", new_guitar_path %>
+    </div>
   <% end %>
 </div>
