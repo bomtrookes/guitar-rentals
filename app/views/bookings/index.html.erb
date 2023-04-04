@@ -1,30 +1,87 @@
-<div class="container mt-3" style="min-height:70vh">
+<div class="container mt-3">
 
-  <h1>Your Bookings</h1>
+  <h2>Upcoming Bookings</h2>
   <hr>
-  <h6>Upcoming Rentals</h6>
+
+  <% if @upcoming.present?%>
+
     <% @upcoming.each do |booking| %>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><%= booking.guitar.name %></h5>
-        <p class="card-text">From <%= booking.start_date %> to <%= booking.end_date %></p>
-        <p class="card-text">£<%= booking.guitar.cost_per_day %> per day</p>
-        <p class="card-text">Total: £<%= booking.total_cost %></p>
-        <%= link_to "View", guitar_path(booking.guitar) %>
+    <div class="upcoming d-flex justify-content-between mb-2">
+
+        <div class="booking-image">
+          <%= cl_image_tag booking.guitar.photos.first.key, loading: "lazy" %>
+        </div>
+
+      <div class="body">
+
+        <div>
+          <h5 class="title"><%= booking.guitar.name %></h5>
+          <h6 class="confirmation">#GUI000<%= 1000000 + booking.id %></h6>
+        </div>
+
+        <div class="details">
+          <p class="text"><%= booking.start_date.strftime("%a-%d-%b") %> to <%= booking.end_date.strftime("%a-%d-%b") %></p>
+          <p class="text">£<%= booking.guitar.cost_per_day %> per day</p>
+          <p class="text">Total: £<%= booking.total_cost %></p>
+        </div>
+
+        <div class="actions">
+          <%= link_to "View", guitar_path(booking.guitar) %>
+          <a href="#">Edit</a>
+          <%#= link_to "Edit", edit_user_booking_path(current_user, booking.guitar) %>
+          <%= link_to "Delete", booking_path(booking.guitar), method: "delete", data: { confirm: 'Are you sure?' } %>
+        </div>
       </div>
+
     </div>
   <% end %>
+
+  <% else %>
+
+  <div class="no-content">
+    <h6>You have no upcoming rentals</h6>
+  </div>
+  <% end %>
+  <br>
+  <h2>Booking History</h2>
   <hr>
-  <h6>Rental History</h6>
+  <% if @history.present?%>
   <% @history.each do |booking| %>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><%= booking.guitar.name %></h5>
-        <p class="card-text">From <%= booking.start_date %> to <%= booking.end_date %></p>
-        <p class="card-text">£<%= booking.guitar.cost_per_day %> per day</p>
-        <p class="card-text">Total: £<%= booking.total_cost %></p>
-        <%= link_to "View", guitar_path(booking.guitar) %>
+     <div class="history d-flex justify-content-between mb-2">
+
+        <div class="booking-image">
+          <%= cl_image_tag booking.guitar.photos.first.key, loading: "lazy" %>
+        </div>
+
+      <div class="body">
+
+        <div>
+          <h5 class="title"><%= booking.guitar.name %></h5>
+          <h6 class="confirmation">#GUI000<%= 1000000 + booking.id %></h6>
+        </div>
+
+        <div class="details">
+          <p class="text"><%= booking.start_date.strftime("%a-%d-%b") %> to <%= booking.end_date.strftime("%a-%d-%b") %></p>
+          <p class="text">£<%= booking.guitar.cost_per_day %> per day</p>
+          <p class="text">Paid: £<%= booking.total_cost %></p>
+        </div>
+
+        <div class="actions">
+          <%= link_to "Book", guitar_path(booking.guitar) %>
+          <a href="#">Review</a>
+          <a href="#">Message</a>
+          <%#= link_to "Edit", edit_user_booking_path(current_user, booking.guitar) %>
+          <%#= link_to "Delete", booking_path(booking.guitar), method: "delete", data: { confirm: 'Are you sure?' } %>
+        </div>
       </div>
+
     </div>
   <% end %>
+
+  <% else %>
+  <div class="no-content">
+    <h6>You haven't booked anything yet</h6>
+    <p><%= link_to "Browse Guitars", guitars_path %></p>
+  <% end %>
+</div>
 </div>

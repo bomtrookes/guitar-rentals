@@ -84,6 +84,8 @@ class GuitarsController < ApplicationController
 
   def owned
     @guitars = current_user.guitars
+    @active_guitars = current_user.guitars.where(published:true)
+    @inactive_guitars = current_user.guitars.where(published:false)
   end
 
   private
