@@ -51,3 +51,18 @@
     cursor: default !important;
   }
 }
+
+.gallery {
+  background-color: white;
+  border-radius: 8px;
+  height: 80%;
+  min-height: 350px;
+  width: 80%;
+  padding: 12px;
+  padding-top: 0;
+  overflow-y: scroll;
+  img {
+    width: 80%;
+    margin: 0.5rem auto;
+  }
+}
