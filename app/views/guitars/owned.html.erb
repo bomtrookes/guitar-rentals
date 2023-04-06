@@ -2,18 +2,6 @@
   <h1>My Guitars</h1>
   <% if @guitars.present? %>
 
-    <div class="search-container">
-      <%= form_with url: guitars_path, method: :get, class: "d-flex mb-3" do %>
-        <%= text_field_tag :query,
-          params[:query],
-          id: "search",
-          class: "form-control",
-          placeholder: "Search..."
-        %>
-          <%= submit_tag "Search", class: "btn btn-dark" %>
-      <% end %>
-    </div>
-
     <% if @active_guitars.present? %>
     <h2>My Active Guitars</h2>
       <%= render 'guitars', guitars: @active_guitars %>

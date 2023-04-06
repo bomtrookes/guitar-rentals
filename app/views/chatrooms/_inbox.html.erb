@@ -1,7 +1,15 @@
 <div>
   <div class="d-flex justify-content-between p-2">
     <h3>Inbox</h3>
-    <input type="text" placeholder="Search Inbox..." style="width:50%">
+      <%= form_with url: chatrooms_path, method: :get, class: "d-flex mb-3" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          id: "search",
+          class: "form-control",
+          placeholder: "Search..."
+        %>
+        <%= submit_tag "Search", class: "btn btn-dark" %>
+      <% end %>
   </div>
 
   <div class="inbox-container">
