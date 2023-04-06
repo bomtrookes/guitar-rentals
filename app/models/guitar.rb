@@ -10,7 +10,7 @@ class Guitar < ApplicationRecord
 
   has_many :chatrooms, dependent: :destroy
 
-
+# Published Guitars Search
   include PgSearch::Model
   pg_search_scope :search_published_guitars,
     against: [ :name, :caption, :description, :guitar_type ],
