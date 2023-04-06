@@ -14,9 +14,9 @@ class GuitarsController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.joins(:guitars).where(guitars: { published: true }).distinct
     if params[:query].present?
-      @guitars = Guitar.search_all_guitars(params[:query])
+      @guitars = Guitar.search_published_guitars(params[:query])
       @markers = @users.geocoded.map do |user|
         {
           lat: user.latitude,
@@ -26,7 +26,7 @@ class GuitarsController < ApplicationController
         }
       end
     else
-      @guitars = Guitar.all
+      @guitars = Guitar.where(published: true)
       # DRY - refactor this code
       @markers = @users.geocoded.map do |user|
         {

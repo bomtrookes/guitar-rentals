@@ -32,7 +32,7 @@
   grid-template-areas: "name rating"
                        ". . "
                        "type ."
-                       "price .";
+                       "price delete";
   .g-card-title {
     grid-area: name;
     font-weight: bold;
@@ -48,6 +48,13 @@
   .g-card-price {
     grid-area: price;
     text-decoration: underline;
+  }
+  .g-card-delete {
+    grid-area: delete;
+    color: red;
+    font-size: 20px;
+    text-align: right;
+    cursor: pointer;
   }
 }
 // Review Cards

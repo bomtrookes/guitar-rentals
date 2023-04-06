@@ -12,11 +12,15 @@ class Guitar < ApplicationRecord
 
 
   include PgSearch::Model
-  pg_search_scope :search_all_guitars,
+  pg_search_scope :search_published_guitars,
     against: [ :name, :caption, :description, :guitar_type ],
     using: {
       tsearch: { prefix: true }
-  }
+    },
+    associated_against: {
+      user: [:name, :username]
+    },
+    :conditions => lambda { |guitar| { published: true } }
 
   # Favourites Search
   include PgSearch::Model
