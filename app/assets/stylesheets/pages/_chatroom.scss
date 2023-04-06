@@ -2,7 +2,7 @@
   overflow: hidden;
 }
 #chatroom {
-  padding: 8px 12px;
+  padding: 8px 48px;
   min-height: 60vh;
   a {
     text-decoration: none;
@@ -10,6 +10,7 @@
   }
   .inbox {
     display: grid;
+    background-color: white;
     padding: 12px;
     font-size: 14px;
     border-bottom: 1px rgba(211, 211, 211, 0.4) solid;
@@ -17,7 +18,7 @@
     grid-template-areas:
       "user subject date";
     &:hover {
-      color: rgb(0, 0, 0);
+      filter : invert(1);
     }
   }
   .messages {
@@ -30,8 +31,15 @@
   .subject {
     grid-area: subject;
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .message {
+    font-weight: normal;
   }
   .date {
+    font-weight: bold;
     grid-area: date;
     text-align: right;
   }
@@ -149,4 +157,11 @@
     }
   }
 
+}
+.inbox-container {
+  background: #e3e2e2;
+  height: 60vh;
+  border-radius: 8px;
+  margin-top: 1rem;
+  overflow-y: scroll;
 }
