@@ -8,7 +8,7 @@
     <% if @favourites.present? %>
 
     <div class="search-container">
-      <%= form_with url: guitars_path, method: :get, class: "d-flex mb-3" do %>
+      <%= form_with url: user_favourites_path, method: :get, class: "d-flex mb-3" do %>
         <%= text_field_tag :query,
           params[:query],
           id: "search",
