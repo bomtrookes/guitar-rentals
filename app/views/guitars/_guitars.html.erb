@@ -15,6 +15,11 @@
           <p class="g-card-rating"><%= guitar.average_rating %></p>
           <p class="g-card-type"><%= guitar.guitar_type %></p>
           <p class="g-card-price">£<%= guitar.cost_per_day %> per night</p>
+          <% if guitar.user == current_user %>
+            <p class="g-card-delete">
+              <i class="bi bi-trash"></i>
+            </p>
+          <% end %>
         </div>
       </div>
 

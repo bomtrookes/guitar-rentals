@@ -19,10 +19,8 @@ class ChatroomsController < ApplicationController
     guitar = Guitar.find(params[:guitar_id])
     recipient = guitar.user
 
-    # Check if there's an existing chatroom between the current user and the recipient
     @chatroom = Chatroom.find_by(user1: current_user, user2: recipient, guitar: guitar)
 
-    # If there's no existing chatroom, create a new one
     unless @chatroom
       @chatroom = Chatroom.new(user1: current_user, user2: recipient, guitar: guitar)
       puts @chatroom.errors.full_messages
@@ -32,7 +30,6 @@ class ChatroomsController < ApplicationController
         return
       else
         puts @chatroom.errors.full_messages
-        # If the chatroom couldn't be saved, handle the error and display a message
         flash[:error] = "An error occurred while creating the chatroom."
         redirect_to guitars_path
         return
@@ -40,7 +37,6 @@ class ChatroomsController < ApplicationController
     end
 
     puts @chatroom.errors.full_messages
-    # If the chatroom already exists, redirect to it
     redirect_to guitar_chatroom_path(guitar_id: guitar.id, id: @chatroom.id)
   end
 

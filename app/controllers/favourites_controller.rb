@@ -3,7 +3,12 @@ class FavouritesController < ApplicationController
   before_action :set_guitar, only: [:create, :destroy]
 
   def index
-    @favourites = current_user.favourites.map(&:guitar)
+    @user = current_user
+    if params[:query].present?
+      @favourites = Guitar.search_user_favourites(params[:query])
+    else
+      @favourites = current_user.favourites.map(&:guitar)
+    end
   end
 
   def create
