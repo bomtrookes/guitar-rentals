@@ -2,13 +2,21 @@
 
     <%= simple_form_for [@chatroom.guitar, @chatroom, @chatroom.messages.build],
       html: {
-        data: { action: "turbo:submit-end->chatroom-subscription#resetForm" },
+        data: { action: "turbo:submit-end->chatroom-subscription#resetForm", controller: "message" },
         url: guitar_chatroom_messages_path(@chatroom.guitar, @chatroom),
         method: :post,
         remote: true
       } do |f| %>
       <div class="form-group" style="position: relative">
-        <%= f.input :content, label: false, placeholder: "Type your message here...", input_html: { class: "form-control", rows: 2, style: "resize:none" } %>
+        <%= f.input :content, label: false, placeholder: "Type your message here...",
+        input_html: {
+          data: {
+            target: 'input',
+            action: 'keydown->message#submitOnEnter'
+          },
+          class: "form-control",
+          rows: 2,
+          style: "resize:none" } %>
         <button type="submit"><i class="class='bi bi-send"></i></button>
       </div>
     <% end %>
