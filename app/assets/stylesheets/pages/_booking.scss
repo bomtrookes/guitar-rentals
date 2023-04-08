@@ -1,0 +1,80 @@
+.booking-container {
+  min-height: 60vh;
+  display: grid;
+  // grid-gap: 12px;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 10% 60% 20%;
+  grid-template-areas:
+    "header header"
+    "confirmation payment"
+    "conditions conditions";
+}
+.booking-guitar {
+  grid-area: header;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 5px solid black;
+  padding: 0 1rem;
+}
+.booking-details {
+  margin: 1rem;
+  grid-area: confirmation;
+  background: white;
+  border: 5px solid black;
+  border-radius: 8px;
+  padding: 1rem;
+  .confirmed {
+    color: darkgreen;
+  }
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+}
+.payment {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  margin: 1rem;
+  grid-area: payment;
+  text-align: right;
+  border: 5px solid black;
+  border-radius: 8px;
+  padding: 1rem;
+  h4 {
+    text-align: center;
+  }
+  button {
+    background: rgb(41, 148, 235);
+    border-radius: 4px;
+    color: white;
+    width: 100%;
+  }
+}
+.conditions {
+  background: white;
+  position: relative;
+  margin: 0 1rem;
+  grid-area: conditions;
+  border: 5px solid black;
+  border-radius: 8px;
+  overflow-y: scroll;
+  h6 {
+    position: sticky;
+    top: 0;
+    padding: 0.5rem;
+    background: white;
+  }
+  .conditions-text {
+    margin-left: 2rem;
+    margin-right: 3rem;
+    font-size: 0.8rem;
+    color: grey;
+    font-style: italic; ;
+  }
+}

@@ -1,0 +1,91 @@
+<div class="booking-container">
+
+  <div class="booking-guitar">
+    <%= link_to "< All Bookings", user_bookings_path(current_user) %>
+
+    <h3><%= link_to @booking.guitar.name, guitar_path(@booking.guitar) %></h3>
+
+    <%= simple_form_for([current_user, @booking], authenticity_token: true, method: :delete) do |f| %>
+      <%= f.button :submit, "Cancel Booking", class: "btn btn-dark" %>
+    <% end %>
+  </div>
+
+  <div class="booking-details">
+    <div class="confirmed">
+      <h1><i class="bi bi-check-circle-fill"></i> Booking Confirmed</h1>
+    </div>
+    <hr>
+    <div class="booking-number">
+        <h4 class="confirmation">CONFIRMATION: #GUI000<%= 1000000 + @booking.id %></h4>
+    </div>
+    <hr>
+    <div class="collection">
+      <div class="d-flex align-items-center">
+        <%= image_tag("avatar.jpg") %>
+        <h4>Renting from <%= @booking.guitar.user.first_name %></h4>
+      </div>
+      <p>Pick up guitar from: <%= @booking.guitar.user.address %></p>
+      <div class="edit d-flex justify-space-between">
+        <p class="text"><%= @booking.start_date.strftime("%a-%d-%b") %> to <%= @booking.end_date.strftime("%a-%d-%b") %></p>
+        <a href="#">Edit Booking</a>
+      </div>
+    </div>
+
+    <div class="map">
+      <h6>We'll put map here</h6>
+    </div>
+
+  </div>
+
+  <div class="payment">
+    <h4>Payment Summary</h4>
+    <hr>
+    <p class="text">RENTAL COST: £<%= @booking.guitar.cost_per_day %> per day</p>
+    <p>£<%= @booking.guitar.cost_per_day %> x <%= (@booking.end_date - @booking.start_date).to_i %></p>
+    <p class="text">TOTAL: £<%= @booking.total_cost %></p>
+    <button>Pay Now</button>
+  </div>
+
+  <div class="conditions">
+    <h6>Rental Conditions</h6>
+    <ol class="conditions-text">
+      <li>The renter must agree to pay the agreed-upon rental fee, which is due at the beginning of the rental period.</li>
+      <li>The rental period will begin on the agreed-upon start date and end on the agreed-upon end date. If the renter wishes to extend the rental period, they must contact the owner to make arrangements.</li>
+      <li>The guitar must be returned in the same condition it was in at the start of the rental period, except for normal wear and tear.</li>
+      <li>The renter is responsible for any damage or loss that occurs to the guitar during the rental period.</li>
+      <li>The renter is responsible for any repairs or maintenance required due to damage or loss during the rental period.</li>
+      <li>The owner is not responsible for any injury or harm that occurs to the renter or any third parties as a result of the rental or use of the guitar.</li>
+      <li>The renter must agree to use the guitar for its intended purpose and not engage in any activities that may damage the guitar or create a risk of harm to themselves or others.</li>
+      <li>The renter may not sublease or lend the guitar to any third parties without the owner's prior written consent.</li>
+      <li>The owner reserves the right to terminate the rental agreement at any time if the renter violates any of the terms and conditions.</li>
+      <li>The renter agrees to indemnify and hold the owner harmless from any and all claims, damages, expenses, or liabilities that arise from the rental or use of the guitar.</li>
+</ol>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="body" style="display: none">
+    <div class="booking-image">
+      <%= cl_image_tag @booking.guitar.photos.first.key, loading: "lazy" %>
+    </div>
+
+
+      <div>
+        <h5 class="title"><%= @booking.guitar.name %></h5>
+      </div>
+
+      <div class="details">
+      </div>
+    </div>
+
+  </div>

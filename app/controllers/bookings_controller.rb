@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     @booking = @guitar.bookings.build(booking_params)
     @booking.user = current_user
     if @booking.save
-      redirect_to @guitar, notice: "Booking created successfully."
+      redirect_to user_booking_path(current_user, @booking), notice: "Booking created successfully."
     else
       puts @booking.errors.full_messages
       redirect_to @guitar, notice: "Booking failed."
@@ -26,6 +26,11 @@ class BookingsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def show
+    @user = current_user
+    @booking = Booking.find(params[:id])
   end
 
   def update
