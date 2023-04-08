@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
 
   def index
     @user = current_user
@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     @booking = @guitar.bookings.build(booking_params)
     @booking.user = current_user
     if @booking.save
-      redirect_to @guitar, notice: "Booking created successfully."
+      redirect_to user_booking_path(current_user, @booking), notice: "Booking created successfully."
     else
       puts @booking.errors.full_messages
       redirect_to @guitar, notice: "Booking failed."
@@ -28,13 +28,25 @@ class BookingsController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+    @booking = Booking.find(params[:id])
+    @markers =
+    [
+      lat: @booking.guitar.user.latitude,
+      lng: @booking.guitar.user.longitude,
+      info_window_html: render_to_string(partial: "guitars/info_window", locals: {booking: @booking}),
+      marker_html: render_to_string(partial: "guitars/marker")
+    ]
+  end
+
   def update
   end
 
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to bookings_path
+    redirect_to user_bookings_path(current_user)
   end
 
   private

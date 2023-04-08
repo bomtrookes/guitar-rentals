@@ -12,6 +12,20 @@ export default class extends Controller {
       { received: (data) => this.#insertMessageAndScrollDown(data) }
     );
 
+    // const form = document.querySelector('#new_message')
+    // const input = document.querySelector('#message_content')
+    // input.addEventListener('keydown', (e) => {
+    //   if (e.key === 'Enter') {
+    //     e.preventDefault();
+    //     const messageContent = input.value.trim();
+    //     if (messageContent !== '') {
+    //       this.channel.send({ message: messageContent });
+    //       input.value = '';
+    //     }
+    //   }
+    // });
+
+
     console.log(
       `Subscribe to the chatroom with the id ${this.chatroomIdValue}.`
     );

@@ -26,11 +26,13 @@
         </div>
 
         <div class="actions">
-          <%= link_to "View", guitar_path(booking.guitar) %>
-          <a href="#">Edit</a>
+          <%= link_to "View", user_booking_path(current_user, booking) %>
           <%#= link_to "Edit", edit_user_booking_path(current_user, booking.guitar) %>
-          <%= link_to "Delete", booking_path(booking.guitar), method: "delete", data: { confirm: 'Are you sure?' } %>
-        </div>
+          <%#= simple_form_for([current_user, booking], authenticity_token: true, method: :delete) do |f| %>
+            <%#= f.button :submit, "Delete", class: "btn btn-danger" %>
+          <%# end %>
+          <%#= button_to "Message", guitar_chatrooms_path(guitar_id: booking.guitar.id), method: :post, class: "btn btn-dark" %>
+</div>
       </div>
 
     </div>
