@@ -31,6 +31,13 @@ class BookingsController < ApplicationController
   def show
     @user = current_user
     @booking = Booking.find(params[:id])
+    @markers =
+    [
+      lat: @booking.guitar.user.latitude,
+      lng: @booking.guitar.user.longitude,
+      info_window_html: render_to_string(partial: "guitars/info_window", locals: {booking: @booking}),
+      marker_html: render_to_string(partial: "guitars/marker")
+    ]
   end
 
   def update

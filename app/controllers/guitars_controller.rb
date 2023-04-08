@@ -18,6 +18,8 @@ class GuitarsController < ApplicationController
     if params[:query].present?
       @guitars = Guitar.search_published_guitars(params[:query])
       @markers = @users.geocoded.map do |user|
+        guitar = user.guitars.where(id: @guitars.pluck(:id)).first
+        marker_guitar_photo = guitar&.photos&.first
         {
           lat: user.latitude,
           lng: user.longitude,

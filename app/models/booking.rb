@@ -29,4 +29,13 @@ class Booking < ApplicationRecord
       end
     end
   end
+
+  def num_days
+    num = (end_date - start_date).to_i
+    if num == 1
+      "£#{guitar.cost_per_day} x #{num} day"
+    else
+      "£#{guitar.cost_per_day} x #{num} days"
+    end
+  end
 end

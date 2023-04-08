@@ -1,1 +1,5 @@
-<%= image_tag "logo.png", height: 30, width: 30, alt: "Logo" %>
+<% if @guitars.present? %>
+  <%= image_tag "guitar.png", height: 30, width: 30, alt: "Logo" %>
+<% else %>
+  <%= cl_image_tag @guitar.photos[0].key, height: 30, width: 30, alt: "Logo" %>
+<% end %>

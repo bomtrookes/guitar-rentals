@@ -1,1 +1,5 @@
-<%= @guitar.name %>
+<% if @guitar.present? %>
+  <%= @guitar.name %>
+<% else %>
+  <%= @booking.guitar.name %>
+<% end %>
